@@ -26,7 +26,7 @@ export const ProjectTimeLine = () => {
           <_Text>my first Project</_Text>
         </_SimpleInfo>
       </_Station>
-      {modal && (
+      {!!modal && (
         <_ProjectWrapper>
           <OutsideClickHandler
             onOutsideClick={() => setModal(0)}
@@ -89,6 +89,7 @@ const _Preview = styled.div`
     visibility: hidden;
     position: relative;
     z-index: 2;
+    transition: 0.25;
   }
   :hover {
     > svg {
@@ -96,6 +97,7 @@ const _Preview = styled.div`
     }
     ${_PreviewBack} {
       opacity: 30%;
+      transition: 0.25s;
     }
   }
 `;
