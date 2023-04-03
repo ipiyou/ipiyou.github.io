@@ -1,7 +1,7 @@
 import { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import styled from "styled-components";
-import { Github, Info, WebSite } from "../assets/svg";
+import { BackSpace, Github, Info, WebSite } from "../assets/svg";
 import { ShadowItem } from "../components/common/ShadowItem";
 import { _Text } from "../components/common/Text";
 
@@ -12,19 +12,14 @@ export const ProjectTimeLine = () => {
       <_Text size="30px">Start FrontEnd</_Text>
       <_TimeLine />
       <_Station>
+        <_TitleItem>2023-5</_TitleItem>
         <_Preview onClick={() => setModal(1)}>
-          <_PreviewBack />
-          <Info />
+          <_PreviewBack src="https://cdn.crowdpic.net/list-thumb/thumb_l_CDD94CBD46425E4EDBD18A7A17C199E7.jpg" />
+          <_SvgWrapper>
+            <Info />
+          </_SvgWrapper>
         </_Preview>
-        <_LineWrapper>
-          <_Ball />
-          <_TimeLine />
-        </_LineWrapper>
-        <_SimpleInfo>
-          <_TitleItem>ONPOST</_TitleItem>
-          <_Text>2023-5</_Text>
-          <_Text>my first Project</_Text>
-        </_SimpleInfo>
+        <_TimeLine />
       </_Station>
       {!!modal && (
         <_ProjectWrapper>
@@ -45,8 +40,11 @@ export const ProjectTimeLine = () => {
             </_ProjectContent>
 
             <_ProjectFooter>
-              <WebSite />
-              <Github />
+              <BackSpace />
+              <_ProjectLinks>
+                <WebSite />
+                <Github />
+              </_ProjectLinks>
             </_ProjectFooter>
           </OutsideClickHandler>
         </_ProjectWrapper>
@@ -64,16 +62,16 @@ const _Wrapper = styled.section`
 
 const _Station = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
   gap: 40px;
-  justify-content: space-between;
+  padding: 40px 0;
 `;
 
-const _PreviewBack = styled.div`
-  position: absolute;
+const _PreviewBack = styled.img`
   width: 100%;
-  height: 100%;
   border-radius: ${({ theme }) => theme.radius.medium};
-  background-image: url("https://cdn.crowdpic.net/list-thumb/thumb_l_CDD94CBD46425E4EDBD18A7A17C199E7.jpg");
 `;
 
 const _Preview = styled.div`
@@ -81,10 +79,25 @@ const _Preview = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 300px;
-  height: 200px;
+  max-width: 500px;
+  width: 100%;
   background-color: ${({ theme }) => theme.color.black};
   border-radius: ${({ theme }) => theme.radius.medium};
+  :hover {
+    ${_PreviewBack} {
+      opacity: 30%;
+      transition: 0.25s;
+    }
+  }
+`;
+
+const _SvgWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   > svg {
     visibility: hidden;
     position: relative;
@@ -94,10 +107,6 @@ const _Preview = styled.div`
   :hover {
     > svg {
       visibility: visible;
-    }
-    ${_PreviewBack} {
-      opacity: 30%;
-      transition: 0.25s;
     }
   }
 `;
@@ -140,6 +149,7 @@ const _ProjectWrapper = styled.div`
   position: fixed;
   top: 0;
   width: 600px;
+  z-index: 5;
   background-color: white;
   box-shadow: ${({ theme }) => theme.shadow.item};
   border-radius: ${({ theme }) => theme.radius.medium};
@@ -147,14 +157,21 @@ const _ProjectWrapper = styled.div`
 `;
 
 const _ProjectContent = styled.div`
-  height: 700px;
+  height: calc(100vh - 80px);
   overflow-y: auto;
-  padding: 20px 30px 70px 30px;
+  padding: 20px 30px 0 30px;
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.color.black};
+  }
 `;
 
 const _SubTitle = styled.div`
   color: ${({ theme }) => theme.color.gray};
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: bold;
   margin-bottom: 10px;
 `;
 
@@ -178,11 +195,15 @@ const _ProjectFooter = styled.div`
   width: 100%;
   height: 50px;
   display: flex;
-  flex-direction: row-reverse;
   align-items: center;
-  padding-right: 20px;
+  justify-content: space-between;
+  padding: 0 20px;
   gap: 20px;
   box-sizing: border-box;
   box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
+`;
+
+const _ProjectLinks = styled.div`
+  display: flex;
+  gap: 20px;
 `;
