@@ -34,9 +34,10 @@ const _SkillItem = styled(ShadowItem)<{ show: boolean }>`
   width: 300px;
   height: 200px;
   transition: 0.25s;
+  background-color: ${({ theme }) => theme.color.white + "BB"};
   background-color: ${({ show, theme }) => show && theme.color.black};
   ${_SkillTitle} {
-    color: ${({ show }) => show && "#FFFFFF"};
+    color: ${({ show, theme }) => show && theme.color.white};
   }
   ${({ show, theme }) => css`
     > ${_Content} {
