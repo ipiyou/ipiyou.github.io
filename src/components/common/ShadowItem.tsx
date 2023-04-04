@@ -9,6 +9,7 @@ export const ShadowItem = styled.div<{
   display: flex;
   flex-direction: ${({ direction = "row" }) => direction};
   align-items: center;
+  justify-content: center;
   border-radius: ${({ theme, radius = "small" }) => theme.radius[radius]};
   box-shadow: ${({ theme }) => theme.shadow.item};
   padding: 0 13px 0 20px;

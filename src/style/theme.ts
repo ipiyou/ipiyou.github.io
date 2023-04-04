@@ -5,6 +5,7 @@ export const theme = {
     green: "#00FF19",
     black: "#000000",
     gray: "#858585",
+    white: "#FFFFFF",
   },
   radius: {
     small: "4px",
