@@ -8,3 +8,4 @@ export * from "./React";
 export * from "./Recoil";
 export * from "./Styled";
 export * from "./Redux";
+export * from "./PlayVideo";
