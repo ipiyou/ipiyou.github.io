@@ -156,4 +156,4 @@ const _Footer = styled.div`
 
 const _VideoWrapper = styled.div`
   cursor: pointer;
-`;
+`
