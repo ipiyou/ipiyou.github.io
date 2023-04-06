@@ -10,13 +10,12 @@ import {
 import { _Text } from "../components/common/Text";
 import { SkillItem } from "../components/SkillItem";
 import { skillList } from "../Text/Skills";
+import { SectionTitle } from "../components/common/SectionTitle";
 
 export const SkillChart = () => {
   return (
     <_Wrapper>
-      <_Title size="32px" weight="bold">
-        SKILL
-      </_Title>
+      <SectionTitle>SKILL</SectionTitle>
       <_SkillList>
         {skillList.map(({ title, icon, content }) => (
           <SkillItem title={title} icon={icon} content={content || ""} />

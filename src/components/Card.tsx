@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Github, PlayVideo, WebSite } from "../assets/svg";
 import { ShadowContent, ShadowItem } from "./common/ShadowItem";
 import { _Text } from "./common/Text";
+import { Link } from "./common/Link";
 
 interface PropsType {
   title: string;
@@ -10,6 +11,8 @@ interface PropsType {
   detail: string;
   img?: string;
   video?: string;
+  github?: string;
+  website?: string;
   children: ReactNode;
 }
 
@@ -32,6 +35,8 @@ export const Card = ({
   detail,
   img,
   video,
+  github,
+  website,
   children,
 }: PropsType) => {
   const videoRef = useRef<FullScreenType | null>(null);
@@ -53,10 +58,10 @@ export const Card = ({
         <_Text size="32px" weight="bold">
           {title}
         </_Text>
-        <_Text size="16px" margin="20px 0 0" weight="bold">
+        <_Text size="18px" margin="10px 0 0" weight="bold">
           {subTitle}
         </_Text>
-        <_Text size="14px" margin="30px 0 0">
+        <_Text size="16px" margin="20px 0 0">
           {detail}
         </_Text>
       </_Content>
@@ -69,11 +74,21 @@ export const Card = ({
         {children}
       </_HoverContent>
       <_Footer>
-        <div onClick={() => fullScreen()}>
-          <PlayVideo />
-        </div>
-        <Github />
-        <WebSite />
+        {video && (
+          <_VideoWrapper onClick={() => fullScreen()}>
+            <PlayVideo />
+          </_VideoWrapper>
+        )}
+        {github && (
+          <Link to={github}>
+            <Github />
+          </Link>
+        )}
+        {website && (
+          <Link to={website}>
+            <WebSite />
+          </Link>
+        )}
       </_Footer>
     </_Wrapper>
   );
@@ -84,6 +99,9 @@ const _Content = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px 40px;
+  ${_Text} {
+    text-align: center;
+  }
 `;
 
 const _HoverContent = styled(ShadowContent)`
@@ -134,4 +152,8 @@ const _Footer = styled.div`
   display: flex;
   gap: 20px;
   justify-content: center;
+`;
+
+const _VideoWrapper = styled.div`
+  cursor: pointer;
 `;
