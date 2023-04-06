@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 import styled, { css } from "styled-components";
 import { Typescript } from "../assets/svg";
-import { ShadowItem } from "./common/ShadowItem";
+import { ShadowContent, ShadowItem } from "./common/ShadowItem";
 import { _Text } from "./common/Text";
 
 interface PropsType {
@@ -14,18 +14,20 @@ export const SkillItem = ({ title, content, icon }: PropsType) => {
   const [contentShow, setContent] = useState<boolean>(false);
   return (
     <_SkillItem onClick={() => setContent(!contentShow)} show={contentShow}>
-      <_SkillTitle size="24px">{title}</_SkillTitle>
+      <_SkillTitle margin="15px 0 20px" weight="bold">
+        {title}
+      </_SkillTitle>
+      {icon}
       <_Content>
-        <_Text>{content}</_Text>
+        <_Text size="18px">{content}</_Text>
       </_Content>
-      <_Content>{icon}</_Content>
     </_SkillItem>
   );
 };
 
 const _SkillTitle = styled(_Text)`
-  position: absolute;
-  top: 15px;
+  position: relative;
+  z-index: 5;
 `;
 
 const _SkillItem = styled(ShadowItem)<{ show: boolean }>`
@@ -35,28 +37,22 @@ const _SkillItem = styled(ShadowItem)<{ show: boolean }>`
   height: 200px;
   transition: 0.25s;
   background-color: ${({ theme }) => theme.color.white + "BB"};
-  background-color: ${({ show, theme }) => show && theme.color.black};
-  ${_SkillTitle} {
-    color: ${({ show, theme }) => show && theme.color.white};
-  }
-  ${({ show, theme }) => css`
-    > ${_Content} {
-      ${show ? _Text : "svg"} {
+  ${({ show, theme }) =>
+    show &&
+    css`
+      > ${ShadowContent} {
         opacity: 1;
+      }
+      > ${_SkillTitle} {
         color: ${theme.color.white};
       }
-      ${!show ? _Text : "svg"} {
-        opacity: 0;
-      }
-    }
-  `};
+    `};
   :hover {
     opacity: 70%;
   }
 `;
 
-const _Content = styled.div`
-  position: absolute;
+const _Content = styled(ShadowContent)`
   padding: 0 8px;
   display: flex;
   align-items: center;

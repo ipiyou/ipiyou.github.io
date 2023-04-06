@@ -11,4 +11,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: #ffebb4;
   }
+  * {
+    box-sizing:border-box;
+  }
 `;

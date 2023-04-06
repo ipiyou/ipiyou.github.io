@@ -1,7 +1,7 @@
 import { ReactNode, useRef } from "react";
 import styled from "styled-components";
 import { Github, PlayVideo, WebSite } from "../assets/svg";
-import { ShadowItem } from "./common/ShadowItem";
+import { ShadowContent, ShadowItem } from "./common/ShadowItem";
 import { _Text } from "./common/Text";
 
 interface PropsType {
@@ -50,13 +50,13 @@ export const Card = ({
     <_Wrapper>
       {img && <_Img src={img} />}
       <_Content>
-        <_Text size="36px" margin="20px 0 0" weight="bold">
+        <_Text size="32px" weight="bold">
           {title}
         </_Text>
-        <_Text margin="20px 0 0" weight="bold">
+        <_Text size="16px" margin="20px 0 0" weight="bold">
           {subTitle}
         </_Text>
-        <_Text size="18px" margin="30px 0 0">
+        <_Text size="14px" margin="30px 0 0">
           {detail}
         </_Text>
       </_Content>
@@ -86,32 +86,16 @@ const _Content = styled.div`
   padding: 20px 40px;
 `;
 
-const _HoverContent = styled.div`
-  position: absolute;
-  opacity: 0;
-  transition: 0.25s;
-  width: 100%;
-  height: 100%;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
+const _HoverContent = styled(ShadowContent)`
   gap: 30px;
   padding: 50px 40px;
-  background-color: ${({ theme }) => theme.color.black};
-  ${_Text} {
-    color: ${({ theme }) => theme.color.white};
-  }
-  border-radius: ${({ theme }) => theme.radius.medium};
 `;
 
 const _Wrapper = styled(ShadowItem)`
   position: relative;
-  transition: 0.25s;
   flex-direction: column;
-  justify-content: flex-start;
-  width: 500px;
-  height: 600px;
+  width: 400px;
+  height: 500px;
   padding: 0;
   :hover {
     ${_HoverContent} {
@@ -127,7 +111,7 @@ const _Img = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 4px 4px 0;
+  border-radius: 8px 8px 0;
 `;
 
 const _Video = styled.video`
