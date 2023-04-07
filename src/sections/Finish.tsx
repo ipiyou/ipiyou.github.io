@@ -6,9 +6,11 @@ import { KimTeaWan, MyGithub } from "../assets/img";
 import { ShadowItem } from "../components/common/ShadowItem";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
+import { about } from "../Text/about";
 
 export const Finish = ({ setScroll }: ScrollType) => {
-  const ref = useScroll(setScroll,3);
+  const ref = useScroll(setScroll, 4);
+  const { title, subTitle, detail, img, github, content } = about;
   return (
     <_Wrapper ref={ref}>
       <SectionTitle>Abouut</SectionTitle>
@@ -25,35 +27,13 @@ export const Finish = ({ setScroll }: ScrollType) => {
           </_TagContent>
         </_TagCard>
         <Card
-          title="김태완"
-          subTitle="성장하며 나아갑니다. 
-          코딩을 샌드박스형 게임이라 생각합니다"
-          detail="저는 맡은 일은 끝내기 위해 노력하고
-          성장하는 것을 중요하게 생각합니다.
-          이러한 저와 가치관이 맞는 회사와 함께하고 싶습니다."
-          img={MyGithub}
-          github="https://github.com/ipiyou"
+          title={title}
+          subTitle={subTitle}
+          detail={detail}
+          img={img}
+          github={github}
         >
-          <div>
-            <_Text># 생년월일</_Text>
-            <_Text size="18px">2005.02.27</_Text>
-          </div>
-          <div>
-            <_Text># 학교</_Text>
-            <_Text size="18px">대덕소프트웨어마이스터고등학교</_Text>
-          </div>
-          <div>
-            <_Text># 집</_Text>
-            <_Text size="18px">대전 대덕구 신탄진</_Text>
-          </div>
-          <div>
-            <_Text># 전화번호</_Text>
-            <_Text size="18px">010-7355-9975</_Text>
-          </div>
-          <div>
-            <_Text># 이메일</_Text>
-            <_Text size="18px">tao710803@gmail.com</_Text>
-          </div>
+          {content}
         </Card>
       </_Content>
     </_Wrapper>

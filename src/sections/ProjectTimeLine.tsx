@@ -7,82 +7,28 @@ import { _Text } from "../components/common/Text";
 import { SectionTitle } from "../components/common/SectionTitle";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
+import { projects } from "../Text/Project";
 
 export const ProjectTimeLine = ({ setScroll }: ScrollType) => {
-  const ref = useScroll(setScroll,3);
+  const ref = useScroll(setScroll, 3);
   return (
     <_Wrapper ref={ref}>
       <SectionTitle>Projects</SectionTitle>
       <_Content>
-        <Card
-          title="OnPost"
-          subTitle="글을 작성해 올려 유저와 댓글로 소통할 수 있는 서비스"
-          detail="거의 대부분의 역할을 당담했습니다!"
-          img={OnPost}
-          video={onPostVideo}
-        >
-          <div>
-            <_Text># 인원수</_Text>
-            <_Text size="18px">프론트 2명, 백엔드 1명, 안드로이드 1명</_Text>
-          </div>
-          <div>
-            <_Text># 기술 스택</_Text>
-            <_Text size="18px">React, Typescript, Axios, Recoil</_Text>
-          </div>
-          <div>
-            <_Text># 역할</_Text>
-            <_Text size="18px">
-              프로필 이름,이미지,비밀번호 변경 댓글 추가 삭제 글
-              이름,내용,이미지 추가 수정
-            </_Text>
-          </div>
-        </Card>
-        <Card
-          title="OnPost"
-          subTitle="글을 작성해 올려 유저와 댓글로 소통할 수 있는 서비스"
-          detail="거의 대부분의 역할을 당담했습니다!"
-          img={OnPost}
-          video={onPostVideo}
-        >
-          <div>
-            <_Text># 인원수</_Text>
-            <_Text size="18px">프론트 2명, 백엔드 1명, 안드로이드 1명</_Text>
-          </div>
-          <div>
-            <_Text># 기술 스택</_Text>
-            <_Text size="18px">React, Typescript, Axios, Recoil</_Text>
-          </div>
-          <div>
-            <_Text># 역할</_Text>
-            <_Text size="18px">
-              프로필 이름,이미지,비밀번호 변경 댓글 추가 삭제 글
-              이름,내용,이미지 추가 수정
-            </_Text>
-          </div>
-        </Card>
-        <Card
-          title="OnPost"
-          subTitle="글을 작성해 올려 유저와 댓글로 소통할 수 있는 서비스"
-          detail="거의 대부분의 역할을 당담했습니다!"
-          img={OnPost}
-          video={onPostVideo}
-        >
-          <div>
-            <_Text># 인원수</_Text>
-            <_Text size="18px">프론트 2명, 백엔드 1명, 안드로이드 1명</_Text>
-          </div>
-          <div>
-            <_Text># 기술 스택</_Text>
-            <_Text size="18px">React, Typescript, Axios, Recoil</_Text>
-          </div>
-          <div>
-            <_Text># 역할</_Text>
-            <_Text size="18px">
-              프로필 이름,이미지,비밀번호 변경 댓글 추가 삭제 글
-              이름,내용,이미지 추가 수정
-            </_Text>
-          </div>
-        </Card>
+        {projects.map(
+          ({ title, subTitle, detail, img, video, github, content }) => (
+            <Card
+              title={title}
+              subTitle={subTitle}
+              detail={detail}
+              img={img}
+              video={video}
+              github={github}
+            >
+              {content}
+            </Card>
+          )
+        )}
       </_Content>
     </_Wrapper>
   );
