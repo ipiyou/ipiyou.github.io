@@ -12,7 +12,7 @@ export const useScroll = (setScroll: ScrollFnType, to: number) => {
 
     const mouseDown = e.deltaY > 0;
     const mouseUp = e.deltaY < 0;
-    if (mouseDown && scrollTop + clientHeight >= scrollHeight - 1) {
+    if (mouseDown && to < 4 && scrollTop + clientHeight >= scrollHeight - 1) {
       setScroll(to);
     } else if (mouseUp && to - 2 >= 0 && scrollTop === 0) {
       setScroll(to - 2);
