@@ -59,7 +59,7 @@ const _Content = styled.div`
 const _TagContent = styled.div`
   position: absolute;
   width: 100%;
-  height: 50px;
+  height: 100%;
   bottom: 0;
   opacity: 0;
   display: flex;
