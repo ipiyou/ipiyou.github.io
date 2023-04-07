@@ -4,10 +4,13 @@ import { Card } from "../components/Card";
 import { _Text } from "../components/common/Text";
 import { KimTeaWan, MyGithub } from "../assets/img";
 import { ShadowItem } from "../components/common/ShadowItem";
+import { useScroll } from "../hooks/useScroll";
+import { ScrollType } from "../App";
 
-export const Finish = () => {
+export const Finish = ({ setScroll }: ScrollType) => {
+  const ref = useScroll(setScroll,3);
   return (
-    <_Wrapper>
+    <_Wrapper ref={ref}>
       <SectionTitle>Abouut</SectionTitle>
       <_Content>
         <_TagCard>
@@ -58,7 +61,8 @@ export const Finish = () => {
 };
 
 const _Wrapper = styled.section`
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

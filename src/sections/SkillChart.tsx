@@ -11,10 +11,13 @@ import { _Text } from "../components/common/Text";
 import { SkillItem } from "../components/SkillItem";
 import { skillList } from "../Text/Skills";
 import { SectionTitle } from "../components/common/SectionTitle";
+import { useScroll } from "../hooks/useScroll";
+import { ScrollType } from "../App";
 
-export const SkillChart = () => {
+export const SkillChart = ({ setScroll }: ScrollType) => {
+  const ref = useScroll(setScroll,2);
   return (
-    <_Wrapper>
+    <_Wrapper ref={ref}>
       <SectionTitle>SKILL</SectionTitle>
       <_SkillList>
         {skillList.map(({ title, icon, content }) => (
@@ -26,10 +29,12 @@ export const SkillChart = () => {
 };
 
 const _Wrapper = styled.section`
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 120px;
 `;
 
 const _Title = styled(_Text)`

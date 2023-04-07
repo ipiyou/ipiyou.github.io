@@ -1,9 +1,11 @@
 import { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import { _Text } from "../components/common/Text";
+import { useScroll } from "../hooks/useScroll";
+import { ScrollType } from "../App";
 
-const aboutMe = `성장하는 것을 즐기는
-프론트엔드 김태완입니다`;
+const aboutMe1 = `성장하는 것을 즐기는`;
+const aboutMe2 = `프론트엔드 김태완입니다`;
 
 const stepColor = ["#fef1d9", "#ffeb6e", "#ff9c00", "#e20f00"];
 
@@ -17,16 +19,22 @@ const reduceHeight = (count: number) => {
     });
 };
 
-export const Lending = () => {
+export const Lending = ({ setScroll }: ScrollType) => {
+  const ref = useScroll(setScroll,1);
   return (
-    <_Wrapper>
-      <_Text size="32px">{aboutMe}</_Text>
+    <_Wrapper ref={ref}>
+      <_Text size="32px" weight="bold">
+        {aboutMe1}
+      </_Text>
+      <_Text size="32px" weight="bold">
+        {aboutMe2}
+      </_Text>
       <_FireWrapper>
         {stepColor.map((color, stepIdx) => {
           const itemCount = stepIdx * 2 + 5;
           const stepCount = stepIdx + 1;
           return (
-            <_ColorStep step={stepCount} bottom={stepCount * 15}>
+            <_ColorStep step={stepCount} bottom={stepCount * 10}>
               {Array(itemCount)
                 .fill(0)
                 .map((_, itemIdx) => (
@@ -34,8 +42,8 @@ export const Lending = () => {
                     color={color}
                     second={itemIdx + 1}
                     height={
-                      30 * (stepCount * 2) +
-                      reduceHeight(itemCount)[itemIdx] * 25
+                      15 * (stepCount * 2) +
+                      reduceHeight(itemCount)[itemIdx] * 20
                     }
                   />
                 ))}
@@ -74,13 +82,12 @@ const _Wrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #ffebb4;
 `;
 
 const _FireWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 300px;
   z-index: 3;
 `;
 
@@ -95,7 +102,7 @@ const _ColorStep = styled.div<{ step: number; bottom: number }>`
 `;
 
 const _FireItem = styled.div<{ color: string; height: number; second: number }>`
-  width: 30px;
+  width: 20px;
   height: ${({ height }) => height}px;
   border-radius: ${({ theme }) => theme.radius.large};
   background-color: ${({ color }) => color};
