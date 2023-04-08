@@ -29,12 +29,12 @@ export const Finish = ({ setScroll }: ScrollType) => {
         <Card
           title={title}
           subTitle={subTitle}
-          detail={detail}
+          peoples="프론트 3"
+          role="역할"
+          skills="react"
           img={img}
           github={github}
-        >
-          {content}
-        </Card>
+        />
       </_Content>
     </_Wrapper>
   );

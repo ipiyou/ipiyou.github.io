@@ -8,27 +8,77 @@ import { SectionTitle } from "../components/common/SectionTitle";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
 import { projects } from "../Text/Project";
+import { useTimeLine } from "../hooks/useTimeLine";
+import { Arrow } from "../assets/svg/Arrow";
+
+const TextList = Array(11)
+  .fill(2022)
+  .map((date, idx) => {
+    const month = idx + 5;
+    const monthOver = month >= 12 ? 1 : 0;
+    const year = date + monthOver;
+    return (
+      <div>
+        {year}.{month < 10 && 0}
+        {(month % 12) + monthOver}
+      </div>
+    );
+  });
+
+interface SlideType {
+  date: number;
+}
 
 export const ProjectTimeLine = ({ setScroll }: ScrollType) => {
   const ref = useScroll(setScroll, 3);
+  const [projectNumber, next, date] = useTimeLine([
+    "2022.05",
+    "2022.08",
+    "2022.09",
+    "2022.11",
+    "2023.3",
+  ]);
   return (
     <_Wrapper ref={ref}>
-      <SectionTitle>Projects</SectionTitle>
       <_Content>
-        {projects.map(
-          ({ title, subTitle, detail, img, video, github, content }) => (
-            <Card
-              title={title}
-              subTitle={subTitle}
-              detail={detail}
-              img={img}
-              video={video}
-              github={github}
-            >
-              {content}
-            </Card>
-          )
-        )}
+        <_DateWrapper>
+          <Arrow onClick={() => next(projectNumber - 1)} />
+          <_DateTextWrapper>
+            <_DateTextList weight="bold" date={date}>
+              {TextList}
+            </_DateTextList>
+          </_DateTextWrapper>
+          <Arrow direction="right" onClick={() => next(projectNumber + 1)} />
+        </_DateWrapper>
+        <_ProjectWrapper>
+          <_ProjectList projectNumber={projectNumber}>
+            {projects.map(
+              ({
+                title,
+                subTitle,
+                peoples,
+                role,
+                skills,
+                img,
+                video,
+                website,
+                github,
+              }) => (
+                <Card
+                  title={title}
+                  subTitle={subTitle}
+                  peoples={peoples}
+                  role={role}
+                  skills={skills}
+                  video={video}
+                  img={img}
+                  website={website}
+                  github={github}
+                />
+              )
+            )}
+          </_ProjectList>
+        </_ProjectWrapper>
       </_Content>
     </_Wrapper>
   );
@@ -40,12 +90,53 @@ const _Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 120px;
+  padding: 30px 0;
+  background-color: ${({ theme }) => theme.color.gray10};
 `;
 
-const _Content = styled.div`
+const _Content = styled(ShadowItem)`
+  width: 500px;
+  height: 100%;
+  padding: 0 40px;
+`;
+
+const _ProjectWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`;
+
+const _ProjectList = styled.div<{ projectNumber: number }>`
+  position: absolute;
+  height: 100%;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px 100px;
+  gap: 100px;
+  transition: 1s;
+  left: ${({ projectNumber }) => -projectNumber * 520}px;
+`;
+
+const _DateWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 30px 0;
+`;
+
+const _DateTextWrapper = styled.div`
+  position: relative;
+  width: 80px;
+  height: 26px;
+  overflow: hidden;
+`;
+
+const _DateTextList = styled(_Text)<{ date: number }>`
+  position: absolute;
+  top: ${({ date }) => -date * 30}px;
+  transition: 0.5s;
+  width: 80px;
+  > div {
+    height: 30px;
+    text-align: center;
+  }
 `;

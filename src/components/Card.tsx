@@ -8,18 +8,26 @@ import { Link } from "./common/Link";
 interface PropsType {
   title: string;
   subTitle: string;
-  detail: string;
+  peoples: string;
+  role: string;
+  skills: string;
   img?: string;
   video?: string;
   github?: string;
   website?: string;
-  children: ReactNode;
 }
 
 interface FullScreenType extends HTMLVideoElement {
   mozRequestFullScreen?: () => void;
   webkitRequestFullscreen?: () => void;
   msRequestFullscreen?: () => void;
+}
+
+interface ContentKeyType {
+  subTitle: string;
+  peoples: string;
+  role: string;
+  skills: string;
 }
 
 const screenFn = [
@@ -29,15 +37,23 @@ const screenFn = [
   "msRequestFullscreen",
 ] as const;
 
+const contentTitle: ContentKeyType = {
+  subTitle: "# 개요",
+  peoples: "# 인원",
+  role: "# 맡은 역할",
+  skills: "# 기술 스택",
+};
+
 export const Card = ({
   title,
   subTitle,
-  detail,
+  peoples,
+  role,
+  skills,
   img,
   video,
   github,
   website,
-  children,
 }: PropsType) => {
   const videoRef = useRef<FullScreenType | null>(null);
   const fullScreen = () => {
@@ -51,78 +67,97 @@ export const Card = ({
       }
     }
   };
+  const content: ContentKeyType = {
+    subTitle,
+    peoples,
+    role,
+    skills,
+  };
   return (
     <_Wrapper>
       {img && <_Img src={img} />}
-      <_Content>
-        <_Text size="32px" weight="bold">
-          {title}
-        </_Text>
-        <_Text size="18px" margin="10px 0 0" weight="bold">
-          {subTitle}
-        </_Text>
-        <_Text size="16px" margin="20px 0 0">
-          {detail}
-        </_Text>
-      </_Content>
-      <_HoverContent>
-        {video && (
-          <_Video ref={videoRef} controls>
-            <source src={video} />
-          </_Video>
-        )}
-        {children}
-      </_HoverContent>
-      <_Footer>
-        {video && (
-          <_VideoWrapper onClick={() => fullScreen()}>
-            <PlayVideo />
-          </_VideoWrapper>
-        )}
-        {github && (
-          <Link to={github}>
-            <Github />
-          </Link>
-        )}
-        {website && (
-          <Link to={website}>
-            <WebSite />
-          </Link>
-        )}
-      </_Footer>
+      <_TitleWrapper>
+        <_Text weight="bold">{title}</_Text>
+        <_Footer>
+          {video && (
+            <_VideoWrapper onClick={() => fullScreen()}>
+              <PlayVideo />
+            </_VideoWrapper>
+          )}
+          {github && (
+            <Link to={github}>
+              <Github />
+            </Link>
+          )}
+          {website && (
+            <Link to={website}>
+              <WebSite />
+            </Link>
+          )}
+        </_Footer>
+      </_TitleWrapper>
+      {Object.entries(content).map(([key, value]) => (
+        <_Featrue>
+          <_SubTitle size="16px" weight="bold">
+            {contentTitle[key as keyof ContentKeyType]}
+          </_SubTitle>
+          <_ContentText size="16px">{value}</_ContentText>
+        </_Featrue>
+      ))}
+      {video && (
+        <_Video ref={videoRef} controls>
+          <source src={video} />
+        </_Video>
+      )}
     </_Wrapper>
   );
 };
 
-const _Content = styled.div`
+const _TitleWrapper = styled.div`
+  width: 100%;
+  text-align: center;
+  position: relative;
+  margin: 15px 0 30px;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+const _Footer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+`;
+
+const _Featrue = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  margin-bottom: 20px;
+`;
+
+const _SubTitle = styled(_Text)`
+  width: 85px;
+  white-space: nowrap;
+`;
+
+const _ContentText = styled(_Text)`
+  width: 315px;
+`;
+
+const _Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 40px;
-  ${_Text} {
-    text-align: center;
-  }
-`;
-
-const _HoverContent = styled(ShadowContent)`
-  gap: 30px;
-  padding: 50px 40px;
-`;
-
-const _Wrapper = styled(ShadowItem)`
-  position: relative;
-  flex-direction: column;
-  width: 400px;
-  height: 500px;
-  padding: 0;
-  :hover {
-    ${_HoverContent} {
-      opacity: 1;
-    }
-    path {
-      fill: ${({ theme }) => theme.color.white};
-    }
-  }
+  background-color: ${({ theme }) => theme.color.white};
+  border-radius: ${({ theme }) => theme.radius.medium};
 `;
 
 const _Img = styled.img`
@@ -143,17 +178,6 @@ const _Video = styled.video`
   }
 `;
 
-const _Footer = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 50px;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-`;
-
 const _VideoWrapper = styled.div`
   cursor: pointer;
-`
+`;
