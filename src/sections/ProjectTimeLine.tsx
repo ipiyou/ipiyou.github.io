@@ -11,7 +11,7 @@ import { projects } from "../Text/Project";
 import { useTimeLine } from "../hooks/useTimeLine";
 import { Arrow } from "../assets/svg/Arrow";
 
-const TextList = Array(11)
+const DateTextList = Array(11)
   .fill(2022)
   .map((date, idx) => {
     const month = idx + 5;
@@ -19,19 +19,15 @@ const TextList = Array(11)
     const year = date + monthOver;
     return (
       <div>
-        {year}.{month < 10 && 0}
+        {year}.{month % 12 < 10 && 0}
         {(month % 12) + monthOver}
       </div>
     );
   });
 
-interface SlideType {
-  date: number;
-}
-
 export const ProjectTimeLine = ({ setScroll }: ScrollType) => {
   const ref = useScroll(setScroll, 3);
-  const [projectNumber, next, date] = useTimeLine([
+  const [projectNumber, next, currentDate] = useTimeLine([
     "2022.05",
     "2022.08",
     "2022.09",
@@ -44,8 +40,8 @@ export const ProjectTimeLine = ({ setScroll }: ScrollType) => {
         <_DateWrapper>
           <Arrow onClick={() => next(projectNumber - 1)} />
           <_DateTextWrapper>
-            <_DateTextList weight="bold" date={date}>
-              {TextList}
+            <_DateTextList weight="bold" currentDate={currentDate}>
+              {DateTextList}
             </_DateTextList>
           </_DateTextWrapper>
           <Arrow direction="right" onClick={() => next(projectNumber + 1)} />
@@ -130,9 +126,9 @@ const _DateTextWrapper = styled.div`
   overflow: hidden;
 `;
 
-const _DateTextList = styled(_Text)<{ date: number }>`
+const _DateTextList = styled(_Text)<{ currentDate: number }>`
   position: absolute;
-  top: ${({ date }) => -date * 30}px;
+  top: ${({ currentDate }) => -currentDate * 30}px;
   transition: 0.5s;
   width: 80px;
   > div {
