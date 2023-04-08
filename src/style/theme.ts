@@ -12,7 +12,7 @@ export const theme = {
   radius: {
     small: "4px",
     medium: "8px",
-    large: "100px",
+    large: "100%",
   },
   shadow: {
     item: "0 0 10px 0 rgba(0, 0, 0, 0.25)",
