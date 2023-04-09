@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { _Text } from "./common/Text";
 
 interface ChatType {
-  img: string;
+  img?: string;
   texts: string[];
 }
 
@@ -38,6 +38,7 @@ const _ChatUser = styled.div`
 
 const _ChatUserTextBox = styled(_Text)`
   max-width: 500px;
+  width: fit-content;
   border-radius: ${({ theme }) => theme.radius.medium};
   background-color: ${({ theme }) => theme.color.gray10};
   padding: 8px 16px;
