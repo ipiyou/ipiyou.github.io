@@ -18,65 +18,71 @@ export const Finish = ({ setScroll }: ScrollType) => {
   };
   return (
     <_Wrapper ref={innerScroll ? undefined : ref}>
-      <_Friends {...scrollEvent}>
-        <_FriendsHeader>
-          <_Text margin="20px 0 0">채팅</_Text>
-          <_FriendsInput placeholder="검색" />
-        </_FriendsHeader>
-        {Array(6)
-          .fill(0)
-          .map(() => (
-            <_FriendsButton>
-              <_Img width={50} height={50} src={KimTeaWan} />
-              <div>
-                <_Text size="15px" weight="bold">
-                  김태완
-                </_Text>
-                <_Text size="12px" weight="bold">
-                  반갑습니다.
-                </_Text>
-              </div>
-            </_FriendsButton>
-          ))}
-      </_Friends>
-      <_ChatWrapper>
-        <_ChatHeader>
-          <_HeaderImgCenter>
-            <_Img width={30} height={30} src={KimTeaWan} />
-            <_Text size="16px" weight="bold">
-              김태완
-            </_Text>
-          </_HeaderImgCenter>
-          <Link to="asgas">
-            <_HeaderImgCenter>
-              <Github />
-              <_Text size="18px">ipiyou</_Text>
-            </_HeaderImgCenter>
-          </Link>
-        </_ChatHeader>
-        <_ChatContent {...scrollEvent}>
-          {Array(3)
+      <_Content>
+        <_Friends {...scrollEvent}>
+          <_FriendsHeader>
+            <_Text margin="20px 0 0">채팅</_Text>
+            <_FriendsInput placeholder="검색" />
+          </_FriendsHeader>
+          {Array(6)
             .fill(0)
             .map(() => (
-              <>
-                <_ChatUser>
-                  <_Img width={30} height={30} src={KimTeaWan} />
-                  <_ChatTextBoxList>
-                    <_ChatUserTextBox size="14px">안녕하세요</_ChatUserTextBox>
-                    <_ChatUserTextBox size="14px">안녕하세요</_ChatUserTextBox>
-                  </_ChatTextBoxList>
-                </_ChatUser>
-                <_ChatMe>
-                  <_ChatMeTextBox size="14px">안녕하세용</_ChatMeTextBox>
-                </_ChatMe>
-              </>
+              <_FriendsButton>
+                <_Img width={50} height={50} src={KimTeaWan} />
+                <div>
+                  <_Text size="15px" weight="bold">
+                    김태완
+                  </_Text>
+                  <_Text size="12px" weight="bold">
+                    반갑습니다.
+                  </_Text>
+                </div>
+              </_FriendsButton>
             ))}
-        </_ChatContent>
-        <_Footer>
-          <_FooterInput />
-          <Good />
-        </_Footer>
-      </_ChatWrapper>
+        </_Friends>
+        <_ChatWrapper>
+          <_ChatHeader>
+            <_HeaderImgCenter>
+              <_Img width={30} height={30} src={KimTeaWan} />
+              <_Text size="16px" weight="bold">
+                김태완
+              </_Text>
+            </_HeaderImgCenter>
+            <Link to="asgas">
+              <_HeaderImgCenter>
+                <Github />
+                <_Text size="18px">ipiyou</_Text>
+              </_HeaderImgCenter>
+            </Link>
+          </_ChatHeader>
+          <_ChatContent {...scrollEvent}>
+            {Array(3)
+              .fill(0)
+              .map(() => (
+                <>
+                  <_ChatUser>
+                    <_Img width={30} height={30} src={KimTeaWan} />
+                    <_ChatTextBoxList>
+                      <_ChatUserTextBox size="14px">
+                        안녕하세요
+                      </_ChatUserTextBox>
+                      <_ChatUserTextBox size="14px">
+                        안녕하세요
+                      </_ChatUserTextBox>
+                    </_ChatTextBoxList>
+                  </_ChatUser>
+                  <_ChatMe>
+                    <_ChatMeTextBox size="14px">안녕하세용</_ChatMeTextBox>
+                  </_ChatMe>
+                </>
+              ))}
+          </_ChatContent>
+          <_Footer>
+            <_FooterInput />
+            <Good />
+          </_Footer>
+        </_ChatWrapper>
+      </_Content>
     </_Wrapper>
   );
 };
@@ -88,14 +94,22 @@ const _Wrapper = styled.section`
   align-items: center;
   justify-content: center;
 `;
+const _Content = styled.div`
+  max-width: 1000px;
+  max-height: 500px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  box-shadow: ${({ theme }) => theme.shadow.item};
+  border-radius: ${({ theme }) => theme.radius.medium};
+`;
 
 const _Friends = styled.div`
   max-width: 300px;
   width: 100%;
   height: 100%;
-  max-height: 500px;
-  border: 1px solid black;
   overflow-y: auto;
+  border-right: 1px solid ${({ theme }) => theme.color.gray100};
 `;
 
 const _FriendsHeader = styled.div`
@@ -140,10 +154,8 @@ const _Img = styled.img`
 const _ChatWrapper = styled.div`
   position: relative;
   max-width: 700px;
-  max-height: 500px;
   width: 100%;
   height: 100%;
-  border: 1px solid black;
 `;
 
 const _ChatHeader = styled.div`
