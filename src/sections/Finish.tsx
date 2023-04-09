@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import { SectionTitle } from "../components/common/SectionTitle";
-import { Card } from "../components/Card";
 import { _Text } from "../components/common/Text";
-import { KimTeaWan, MyGithub } from "../assets/img";
-import { ShadowItem } from "../components/common/ShadowItem";
+import { KimTeaWan } from "../assets/img";
+import { useState } from "react";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
 import { about } from "../Text/about";
@@ -12,25 +10,34 @@ import { Link } from "../components/common/Link";
 
 export const Finish = ({ setScroll }: ScrollType) => {
   const ref = useScroll(setScroll, 4);
+  const [innerScroll, setInnerScroll] = useState<boolean>(false);
   const { title, subTitle, detail, img, github, content } = about;
+  const scrollEvent = {
+    onWheel: () => setInnerScroll(true),
+    onMouseLeave: () => setInnerScroll(false),
+  };
   return (
-    <_Wrapper ref={ref}>
-      <_Friends>
+    <_Wrapper ref={innerScroll ? undefined : ref}>
+      <_Friends {...scrollEvent}>
         <_FriendsHeader>
-          <_Text>채팅</_Text>
+          <_Text margin="20px 0 0">채팅</_Text>
           <_FriendsInput placeholder="검색" />
         </_FriendsHeader>
-        <_FriendsButton>
-          <_Img width={50} height={50} src={KimTeaWan} />
-          <div>
-            <_Text size="15px" weight="bold">
-              김태완
-            </_Text>
-            <_Text size="12px" weight="bold">
-              반갑습니다.
-            </_Text>
-          </div>
-        </_FriendsButton>
+        {Array(6)
+          .fill(0)
+          .map(() => (
+            <_FriendsButton>
+              <_Img width={50} height={50} src={KimTeaWan} />
+              <div>
+                <_Text size="15px" weight="bold">
+                  김태완
+                </_Text>
+                <_Text size="12px" weight="bold">
+                  반갑습니다.
+                </_Text>
+              </div>
+            </_FriendsButton>
+          ))}
       </_Friends>
       <_ChatWrapper>
         <_ChatHeader>
@@ -44,20 +51,26 @@ export const Finish = ({ setScroll }: ScrollType) => {
             <_HeaderImgCenter>
               <Github />
               <_Text size="18px">ipiyou</_Text>
-            </_HeaderImgCenter>{" "}
+            </_HeaderImgCenter>
           </Link>
         </_ChatHeader>
-        <_ChatContent>
-          <_ChatUser>
-            <_Img width={30} height={30} src={KimTeaWan} />
-            <_ChatTextBoxList>
-              <_ChatUserTextBox size="14px">안녕하세요</_ChatUserTextBox>
-              <_ChatUserTextBox size="14px">안녕하세요</_ChatUserTextBox>
-            </_ChatTextBoxList>
-          </_ChatUser>
-          <_ChatMe>
-            <_ChatMeTextBox size="14px">안녕하세용</_ChatMeTextBox>
-          </_ChatMe>
+        <_ChatContent {...scrollEvent}>
+          {Array(3)
+            .fill(0)
+            .map(() => (
+              <>
+                <_ChatUser>
+                  <_Img width={30} height={30} src={KimTeaWan} />
+                  <_ChatTextBoxList>
+                    <_ChatUserTextBox size="14px">안녕하세요</_ChatUserTextBox>
+                    <_ChatUserTextBox size="14px">안녕하세요</_ChatUserTextBox>
+                  </_ChatTextBoxList>
+                </_ChatUser>
+                <_ChatMe>
+                  <_ChatMeTextBox size="14px">안녕하세용</_ChatMeTextBox>
+                </_ChatMe>
+              </>
+            ))}
         </_ChatContent>
         <_Footer>
           <_FooterInput />
@@ -70,25 +83,38 @@ export const Finish = ({ setScroll }: ScrollType) => {
 
 const _Wrapper = styled.section`
   height: 100vh;
+  padding: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 const _Friends = styled.div`
-  width: 300px;
-  height: 500px;
+  max-width: 300px;
+  width: 100%;
+  height: 100%;
+  max-height: 500px;
   border: 1px solid black;
+  overflow-y: auto;
 `;
+
 const _FriendsHeader = styled.div`
   padding: 0 16px;
 `;
+
 const _FriendsInput = styled.input`
   width: 100%;
   height: 26px;
-  border-radius: ${({ theme }) => theme.radius.small};
+  outline: 0;
   padding: 0 8px;
+  margin: 10px 0;
+  border-radius: ${({ theme }) => theme.radius.small};
+  border: 1px solid ${({ theme }) => theme.color.gray100};
+  :focus {
+    box-shadow: ${({ theme }) => theme.shadow.item};
+  }
 `;
+
 const _FriendsButton = styled.button`
   cursor: pointer;
   width: 100%;
@@ -113,8 +139,10 @@ const _Img = styled.img`
 
 const _ChatWrapper = styled.div`
   position: relative;
-  width: 700px;
-  height: 500px;
+  max-width: 700px;
+  max-height: 500px;
+  width: 100%;
+  height: 100%;
   border: 1px solid black;
 `;
 
@@ -134,7 +162,8 @@ const _HeaderImgCenter = styled.div`
 `;
 
 const _ChatContent = styled.div`
-  padding: 20px;
+  max-height: 80%;
+  padding: 20px 20px 100px 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
