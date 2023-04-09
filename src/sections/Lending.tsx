@@ -1,10 +1,8 @@
 import { useState, useEffect, ReactNode } from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled from "styled-components";
 import { _Text } from "../components/common/Text";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
-import { Fire } from "../components/Fire";
-import { OnPost } from "../assets/img";
 import { aboutMe } from "../Text/lending";
 
 interface ChildrenType {
@@ -36,8 +34,6 @@ export const Lending = ({ setScroll }: ScrollType) => {
       {imgs.map((src, idx) => (
         <_Background src={src} isCurrentImg={idx === time} />
       ))}
-
-      <Fire />
     </_Wrapper>
   );
 };
@@ -55,6 +51,15 @@ const _Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.color.black};
+`;
+
+const _FireWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
 `;
 
 const _Background = styled.img<{ isCurrentImg: boolean }>`

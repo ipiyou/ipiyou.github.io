@@ -1,10 +1,6 @@
 import styled from "styled-components";
-import { OnPost } from "../assets/img";
-import { onPostVideo } from "../assets/videos";
 import { Card } from "../components/Card";
-import { ShadowItem } from "../components/common/ShadowItem";
 import { _Text } from "../components/common/Text";
-import { SectionTitle } from "../components/common/SectionTitle";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
 import { projects } from "../Text/Project";

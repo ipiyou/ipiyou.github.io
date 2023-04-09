@@ -13,7 +13,7 @@ const reduceHeight = (count: number) => {
 };
 
 export const Fire = () => (
-  <_FireWrapper>
+  <_Wrapper>
     {stepColor.map((color, stepIdx) => {
       const itemCount = stepIdx * 2 + 5;
       const stepCount = stepIdx + 1;
@@ -22,7 +22,7 @@ export const Fire = () => (
           {Array(itemCount)
             .fill(0)
             .map((_, itemIdx) => (
-              <_FireItem
+              <_Block
                 color={color}
                 second={itemIdx + 1}
                 height={
@@ -33,7 +33,7 @@ export const Fire = () => (
         </_ColorStep>
       );
     })}
-  </_FireWrapper>
+  </_Wrapper>
 );
 
 const fire = keyframes`
@@ -57,11 +57,11 @@ const fire = keyframes`
     }
 `;
 
-const _FireWrapper = styled.div`
+const _Wrapper = styled.div`
   position: relative;
-  width: 100%;
-  height: 300px;
-  z-index: 3;
+  width: 100px;
+  height: 115px;
+  z-index: 5;
 `;
 
 const _ColorStep = styled.div<{ step: number; bottom: number }>`
@@ -74,7 +74,7 @@ const _ColorStep = styled.div<{ step: number; bottom: number }>`
   justify-content: center;
 `;
 
-const _FireItem = styled.div<{ color: string; height: number; second: number }>`
+const _Block = styled.div<{ color: string; height: number; second: number }>`
   width: 5px;
   height: ${({ height }) => height}px;
   border-radius: ${({ theme }) => theme.radius.large};

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { about } from "../Text/about";
 import { _Text } from "./common/Text";
 
 interface ChatType {

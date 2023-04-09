@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { _Text } from "../components/common/Text";
-import { KimTeaWan } from "../assets/img";
 import { useState } from "react";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";

@@ -5,17 +5,17 @@ import { skillHoverText, skillNotHoverText } from "../Text/Skills";
 
 export const Balloon = ({ stop }: StopType) => {
   return (
-    <_BalloonWrapper>
+    <_Wrapper>
       <_Balloon size="14px">
-        <_BalllonChangeText stop={stop}>{skillNotHoverText}</_BalllonChangeText>
-        <_BalllonChangeText stop={!stop}>{skillHoverText}</_BalllonChangeText>
+        <_ChangeText stop={stop}>{skillNotHoverText}</_ChangeText>
+        <_ChangeText stop={!stop}>{skillHoverText}</_ChangeText>
       </_Balloon>
       <_Triangle />
-    </_BalloonWrapper>
+    </_Wrapper>
   );
 };
 
-const _BalloonWrapper = styled.div`
+const _Wrapper = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@ const _Balloon = styled(_Text)`
   box-shadow: ${({ theme }) => theme.shadow.item};
 `;
 
-const _BalllonChangeText = styled.div<StopType>`
+const _ChangeText = styled.div<StopType>`
   position: absolute;
   padding: 10px 12px;
   transition: 0.5s;

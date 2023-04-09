@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { _Text } from "./common/Text";
-import { about } from "../Text/about";
 
 interface UserButtonType {
   name: string;

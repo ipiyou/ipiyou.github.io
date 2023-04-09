@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { _Text } from "../components/common/Text";
-import { skillHoverText, skillList, skillNotHoverText } from "../Text/Skills";
+import { skillList } from "../Text/Skills";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
 import { StopType, useCircle } from "../hooks/useCircle";

@@ -1,7 +1,6 @@
-import { ReactNode, useRef } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 import { Github, PlayVideo, WebSite } from "../assets/svg";
-import { ShadowContent, ShadowItem } from "./common/ShadowItem";
 import { _Text } from "./common/Text";
 import { Link } from "./common/Link";
 
@@ -76,7 +75,7 @@ export const Card = ({
   return (
     <_Wrapper>
       {img && <_Img src={img} />}
-      <_TitleWrapper>
+      <_NameWrapper>
         <_Text weight="bold">{title}</_Text>
         <_Footer>
           {video && (
@@ -95,14 +94,14 @@ export const Card = ({
             </Link>
           )}
         </_Footer>
-      </_TitleWrapper>
+      </_NameWrapper>
       {Object.entries(content).map(([key, value]) => (
-        <_Featrue>
+        <_Content>
           <_SubTitle size="16px" weight="bold">
             {contentTitle[key as keyof ContentKeyType]}
           </_SubTitle>
           <_ContentText size="16px">{value}</_ContentText>
-        </_Featrue>
+        </_Content>
       ))}
       {video && (
         <_Video ref={videoRef} controls>
@@ -113,7 +112,7 @@ export const Card = ({
   );
 };
 
-const _TitleWrapper = styled.div`
+const _NameWrapper = styled.div`
   width: 100%;
   text-align: center;
   position: relative;
@@ -133,7 +132,7 @@ const _Footer = styled.div`
   justify-content: center;
 `;
 
-const _Featrue = styled.div`
+const _Content = styled.div`
   display: flex;
   width: 100%;
   gap: 20px;
