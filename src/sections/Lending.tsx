@@ -1,112 +1,68 @@
-import { useState } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import styled, { css, keyframes } from "styled-components";
 import { _Text } from "../components/common/Text";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
+import { Fire } from "../components/Fire";
+import { OnPost } from "../assets/img";
+import { aboutMe } from "../Text/lending";
 
-const aboutMe1 = `성장하는 것을 즐기는`;
-const aboutMe2 = `프론트엔드 김태완입니다`;
+interface ChildrenType {
+  children: ReactNode;
+}
 
-const stepColor = ["#fef1d9", "#ffeb6e", "#ff9c00", "#e20f00"];
-
-const reduceHeight = (count: number) => {
-  return Array(count)
-    .fill(1)
-    .map((_, idx) => {
-      const center = Math.ceil(count / 2);
-      const start1 = idx + 1;
-      return center > start1 ? start1 % center : center * 2 - start1;
-    });
-};
+const Title = ({ children }: ChildrenType) => (
+  <_Title size="32px" weight="bold" color="white">
+    {children}
+  </_Title>
+);
 
 export const Lending = ({ setScroll }: ScrollType) => {
-  const ref = useScroll(setScroll,1);
+  const ref = useScroll(setScroll, 1);
+  const [time, setTime] = useState<number>(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTime((time + 1) % 4);
+    }, 3000);
+  }, [time]);
+
+  const { title, imgs } = aboutMe;
+
   return (
     <_Wrapper ref={ref}>
-      <_Text size="32px" weight="bold">
-        {aboutMe1}
-      </_Text>
-      <_Text size="32px" weight="bold">
-        {aboutMe2}
-      </_Text>
-      <_FireWrapper>
-        {stepColor.map((color, stepIdx) => {
-          const itemCount = stepIdx * 2 + 5;
-          const stepCount = stepIdx + 1;
-          return (
-            <_ColorStep step={stepCount} bottom={stepCount * 10}>
-              {Array(itemCount)
-                .fill(0)
-                .map((_, itemIdx) => (
-                  <_FireItem
-                    color={color}
-                    second={itemIdx + 1}
-                    height={
-                      15 * (stepCount * 2) +
-                      reduceHeight(itemCount)[itemIdx] * 20
-                    }
-                  />
-                ))}
-            </_ColorStep>
-          );
-        })}
-      </_FireWrapper>
+      <Title>{title[0]}</Title>
+      <Title>{title[1]}</Title>
+      {imgs.map((src, idx) => (
+        <_Background src={src} isCurrentImg={idx === time} />
+      ))}
+
+      <Fire />
     </_Wrapper>
   );
 };
 
-const fire = keyframes`
-    0%{
-        transform: scaleY(1)
-    }
-    20% {
-        transform: scaleY(0.9)
-    }
-    40% {
-        transform: scaleY(0.8)
-    }
-    60% {
-        transform: scaleY(0.75)
-    }
-    80% {
-        transform: scaleY(0.9);
-    }
-    100% {
-        transform: scaleY(1);
-    }
+const _Title = styled(_Text)`
+  position: relative;
+  z-index: 2;
 `;
 
 const _Wrapper = styled.section`
+  position: relative;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => theme.color.black};
 `;
 
-const _FireWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 300px;
-  z-index: 3;
-`;
-
-const _ColorStep = styled.div<{ step: number; bottom: number }>`
-  width: 100%;
+const _Background = styled.img<{ isCurrentImg: boolean }>`
   position: absolute;
-  z-index: ${({ step }) => -step};
-  bottom: ${({ bottom }) => bottom}px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-`;
-
-const _FireItem = styled.div<{ color: string; height: number; second: number }>`
-  width: 20px;
-  height: ${({ height }) => height}px;
-  border-radius: ${({ theme }) => theme.radius.large};
-  background-color: ${({ color }) => color};
-  box-shadow: 0 0 80px 20px ${({ color }) => color + "66"};
-  transform-origin: bottom center;
-  animation: ${fire} ${({ second }) => second * 0.25 + 4}s alternate infinite;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  transition: 1s;
+  opacity: ${({ isCurrentImg }) => (isCurrentImg ? 0.5 : 0)};
+  object-fit: cover;
 `;
