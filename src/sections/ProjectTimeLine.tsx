@@ -58,7 +58,7 @@ export const ProjectTimeLine = ({ setScroll }: ScrollType) => {
 
 const _Wrapper = styled.section`
   height: 100vh;
-  overflow-y: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
