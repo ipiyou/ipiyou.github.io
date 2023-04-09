@@ -75,6 +75,7 @@ const _Wrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: ${({ theme }) => theme.color.gray10};
 `;
 const _Content = styled.div`
   max-width: 1000px;
@@ -84,6 +85,7 @@ const _Content = styled.div`
   display: flex;
   box-shadow: ${({ theme }) => theme.shadow.item};
   border-radius: ${({ theme }) => theme.radius.medium};
+  background-color: ${({ theme }) => theme.color.white};
 `;
 
 const _Friends = styled.div`

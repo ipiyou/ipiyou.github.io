@@ -89,7 +89,7 @@ const _Wrapper = styled.section<StopType>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.color.gray50};
+  background-color: ${({ theme }) => theme.color.gray10};
   ${({ theme, stop }) => {
     return (
       stop &&
