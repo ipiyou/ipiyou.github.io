@@ -30,6 +30,7 @@ export const UserButtonList = ({
 const _FriendsButton = styled.button<{ isCurrentButton: boolean }>`
   cursor: pointer;
   width: 100%;
+  transition: 0.5s;
   display: flex;
   align-items: center;
   padding: 7px 16px;
