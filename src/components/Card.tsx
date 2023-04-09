@@ -153,6 +153,7 @@ const _Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  padding: 0 40px;
   display: flex;
   flex-direction: column;
   align-items: center;

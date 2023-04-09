@@ -48,31 +48,7 @@ export const ProjectTimeLine = ({ setScroll }: ScrollType) => {
         </_DateWrapper>
         <_ProjectWrapper>
           <_ProjectList projectNumber={projectNumber}>
-            {projects.map(
-              ({
-                title,
-                subTitle,
-                peoples,
-                role,
-                skills,
-                img,
-                video,
-                website,
-                github,
-              }) => (
-                <Card
-                  title={title}
-                  subTitle={subTitle}
-                  peoples={peoples}
-                  role={role}
-                  skills={skills}
-                  video={video}
-                  img={img}
-                  website={website}
-                  github={github}
-                />
-              )
-            )}
+            {projects.map(Card)}
           </_ProjectList>
         </_ProjectWrapper>
       </_Content>
@@ -90,17 +66,18 @@ const _Wrapper = styled.section`
   background-color: ${({ theme }) => theme.color.gray10};
 `;
 
-const _Content = styled(ShadowItem)`
+const _Content = styled.div`
   width: 500px;
   height: 100%;
-  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const _ProjectWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
 `;
 
 const _ProjectList = styled.div<{ projectNumber: number }>`
@@ -109,7 +86,7 @@ const _ProjectList = styled.div<{ projectNumber: number }>`
   display: flex;
   gap: 100px;
   transition: 1s;
-  left: ${({ projectNumber }) => -projectNumber * 520}px;
+  left: ${({ projectNumber }) => -projectNumber * 600}px;
 `;
 
 const _DateWrapper = styled.div`
