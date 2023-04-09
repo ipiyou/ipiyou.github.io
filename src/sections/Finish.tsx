@@ -36,7 +36,7 @@ export const Finish = ({ setScroll }: ScrollType) => {
             (data, idx) =>
               data.name.includes(search) && (
                 <div onClick={() => setProfile(idx)}>
-                  <UserButtonList {...data} />
+                  <UserButtonList {...data} isCurrentButton={profile === idx} />
                 </div>
               )
           )}

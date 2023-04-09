@@ -5,11 +5,17 @@ interface UserButtonType {
   name: string;
   kinda: string;
   img: string;
+  isCurrentButton: boolean;
 }
 
-export const UserButtonList = ({ name, kinda, img }: UserButtonType) => (
-  <_FriendsButton>
-    <_Img width={50} height={50} src={img} />
+export const UserButtonList = ({
+  name,
+  kinda,
+  img,
+  isCurrentButton,
+}: UserButtonType) => (
+  <_FriendsButton isCurrentButton={isCurrentButton}>
+    <_Img src={img} />
     <div>
       <_Text size="15px" weight="bold">
         {name}
@@ -21,18 +27,18 @@ export const UserButtonList = ({ name, kinda, img }: UserButtonType) => (
   </_FriendsButton>
 );
 
-const _FriendsButton = styled.button`
+const _FriendsButton = styled.button<{ isCurrentButton: boolean }>`
   cursor: pointer;
   width: 100%;
   display: flex;
   align-items: center;
   padding: 7px 16px;
   gap: 10px;
-  background-color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme, isCurrentButton }) =>
+    theme.color[isCurrentButton ? "gray50" : "white"]};
   ${_Text} {
     text-align: start;
   }
-  :focus,
   :hover {
     background-color: ${({ theme }) => theme.color.gray50};
   }
