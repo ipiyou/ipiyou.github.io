@@ -7,11 +7,16 @@ import { ScrollType } from "../App";
 import { about } from "../Text/about";
 import { Github, Good } from "../assets/svg";
 import { Link } from "../components/common/Link";
+import { UserButtonList } from "../components/UserButtonList";
+import { ChatText } from "../components/ChatList";
 
 export const Finish = ({ setScroll }: ScrollType) => {
   const ref = useScroll(setScroll, 4);
   const [innerScroll, setInnerScroll] = useState<boolean>(false);
-  const { title, subTitle, detail, img, github, content } = about;
+  const [profile, setProfile] = useState<number>(0);
+  const [search, setSearch] = useState<string>("");
+
+  const currentChat = about[profile];
   const scrollEvent = {
     onWheel: () => setInnerScroll(true),
     onMouseLeave: () => setInnerScroll(false),
@@ -22,30 +27,27 @@ export const Finish = ({ setScroll }: ScrollType) => {
         <_Friends {...scrollEvent}>
           <_FriendsHeader>
             <_Text margin="20px 0 0">채팅</_Text>
-            <_FriendsInput placeholder="검색" />
+            <_FriendsInput
+              placeholder="검색"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
           </_FriendsHeader>
-          {Array(6)
-            .fill(0)
-            .map(() => (
-              <_FriendsButton>
-                <_Img width={50} height={50} src={KimTeaWan} />
-                <div>
-                  <_Text size="15px" weight="bold">
-                    김태완
-                  </_Text>
-                  <_Text size="12px" weight="bold">
-                    반갑습니다.
-                  </_Text>
+          {about.map(
+            (data, idx) =>
+              data.name.includes(search) && (
+                <div onClick={() => setProfile(idx)}>
+                  <UserButtonList {...data} />
                 </div>
-              </_FriendsButton>
-            ))}
+              )
+          )}
         </_Friends>
         <_ChatWrapper>
           <_ChatHeader>
             <_HeaderImgCenter>
-              <_Img width={30} height={30} src={KimTeaWan} />
+              <_Img width={30} height={30} src={currentChat.img} />
               <_Text size="16px" weight="bold">
-                김태완
+                {currentChat.name}
               </_Text>
             </_HeaderImgCenter>
             <Link to="asgas">
@@ -56,26 +58,7 @@ export const Finish = ({ setScroll }: ScrollType) => {
             </Link>
           </_ChatHeader>
           <_ChatContent {...scrollEvent}>
-            {Array(3)
-              .fill(0)
-              .map(() => (
-                <>
-                  <_ChatUser>
-                    <_Img width={30} height={30} src={KimTeaWan} />
-                    <_ChatTextBoxList>
-                      <_ChatUserTextBox size="14px">
-                        안녕하세요
-                      </_ChatUserTextBox>
-                      <_ChatUserTextBox size="14px">
-                        안녕하세요
-                      </_ChatUserTextBox>
-                    </_ChatTextBoxList>
-                  </_ChatUser>
-                  <_ChatMe>
-                    <_ChatMeTextBox size="14px">안녕하세용</_ChatMeTextBox>
-                  </_ChatMe>
-                </>
-              ))}
+            {currentChat.content.map(ChatText)}
           </_ChatContent>
           <_Footer>
             <_FooterInput />
@@ -129,23 +112,6 @@ const _FriendsInput = styled.input`
   }
 `;
 
-const _FriendsButton = styled.button`
-  cursor: pointer;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 7px 16px;
-  gap: 10px;
-  border: 0;
-  outline: 0;
-  background-color: ${({ theme }) => theme.color.white};
-  :hover {
-    background-color: ${({ theme }) => theme.color.gray50};
-  }
-  ${_Text} {
-    text-align: start;
-  }
-`;
 const _Img = styled.img`
   object-fit: cover;
   border-radius: ${({ theme }) => theme.radius.large};
@@ -180,35 +146,6 @@ const _ChatContent = styled.div`
   flex-direction: column;
   gap: 20px;
   overflow-y: auto;
-`;
-
-const _ChatTextBoxList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-`;
-
-const _ChatUser = styled.div`
-  display: flex;
-  align-items: end;
-  gap: 10px;
-`;
-
-const _ChatUserTextBox = styled(_Text)`
-  max-width: 500px;
-  border-radius: ${({ theme }) => theme.radius.medium};
-  background-color: ${({ theme }) => theme.color.gray10};
-  padding: 8px 16px;
-`;
-
-const _ChatMe = styled.div`
-  display: flex;
-  justify-content: end;
-`;
-
-const _ChatMeTextBox = styled(_ChatUserTextBox)`
-  background-color: ${({ theme }) => theme.color.blue};
-  color: ${({ theme }) => theme.color.white};
 `;
 
 const _Footer = styled.div`
