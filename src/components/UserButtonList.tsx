@@ -29,14 +29,13 @@ const _FriendsButton = styled.button`
   align-items: center;
   padding: 7px 16px;
   gap: 10px;
-  border: 0;
-  outline: 0;
   background-color: ${({ theme }) => theme.color.white};
-  :hover {
-    background-color: ${({ theme }) => theme.color.gray50};
-  }
   ${_Text} {
     text-align: start;
+  }
+  :focus,
+  :hover {
+    background-color: ${({ theme }) => theme.color.gray50};
   }
 `;
 
