@@ -14,4 +14,10 @@ export const Link = ({ to, children }: PropsType) => {
   );
 };
 
-const _Wrapper = styled.a``;
+const _Wrapper = styled.a`
+  text-decoration: none;
+  color: black;
+  :hover {
+    text-decoration: underline;
+  }
+`;
