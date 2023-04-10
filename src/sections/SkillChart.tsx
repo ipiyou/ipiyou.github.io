@@ -27,6 +27,7 @@ export const SkillChart = ({ setScroll }: ScrollType) => {
           src={KimTeaWan}
           onMouseEnter={() => setStop(true)}
           onMouseLeave={() => setStop(false)}
+          alt="기술 스택 프로필 카드"
         />
       </_Circle>
     </_Wrapper>

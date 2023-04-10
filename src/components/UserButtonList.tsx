@@ -15,7 +15,7 @@ export const UserButtonList = ({
   isCurrentButton,
 }: UserButtonType) => (
   <_Wrapper isCurrentButton={isCurrentButton}>
-    <_Img src={img} />
+    <_Img src={img} alt="회고 프로필 사진" />
     <div>
       <_Text size="15px" weight="bold">
         {name}

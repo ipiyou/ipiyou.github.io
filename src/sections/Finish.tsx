@@ -47,7 +47,7 @@ export const Finish = ({ setScroll }: ScrollType) => {
         <_ChatWrapper>
           <_ChatHeader>
             <_HeaderImgWrapper>
-              <_Img src={currentChat.img} />
+              <_Img src={currentChat.img} alt="현재 프로필 사진" />
               <_Text size="16px" weight="bold">
                 {currentChat.name}
               </_Text>

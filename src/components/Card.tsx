@@ -72,7 +72,7 @@ export const Card = ({
   };
   return (
     <_Wrapper>
-      {img && <_Img src={img} />}
+      {img && <_Img src={img} alt="프로젝트 이미지 카드" />}
       <_NameWrapper>
         <_Text weight="bold">{title}</_Text>
         <_Footer>
