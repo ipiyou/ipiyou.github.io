@@ -33,16 +33,21 @@ export const SkillChart = ({ setScroll }: ScrollType) => {
   );
 };
 
-const _SkillList = styled(_SectionWrapper)`
+const _SkillList = styled.div`
+  position: relative;
   width: 500px;
   height: 500px;
-  overflow: visible;
   border: 1px solid black;
   border-radius: 100%;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
 `;
 
 const _Item = styled.div<{ xy: readonly [number, number] }>`
   position: absolute;
+  height: 100%;
   transition: 1s;
   height: 84px;
   ${({ xy }) => {
@@ -80,12 +85,7 @@ const _Pictrue = styled.img`
   object-fit: cover;
 `;
 
-const _Wrapper = styled.section<StopType>`
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.color.gray10};
+const _Wrapper = styled(_SectionWrapper)<StopType>`
   ${({ theme, stop }) => {
     return (
       stop &&
