@@ -10,8 +10,8 @@ export const useCircle = (diameter: number) => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (!stop) setState((state + 5) % 361);
-    }, 2000);
+      if (!stop) setState((state + 10) % 361);
+    }, 1000);
   }, [state, stop]);
 
   const radius = diameter / 2;
