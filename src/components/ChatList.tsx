@@ -56,6 +56,7 @@ const _ChatMeTextBox = styled(_ChatUserTextBox)`
 `;
 
 const _Img = styled.img`
+  flex-shrink: 0;
   width: 30px;
   height: 30px;
   object-fit: cover;
