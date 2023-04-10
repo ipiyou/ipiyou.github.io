@@ -6,6 +6,7 @@ import { ScrollType } from "../App";
 import { StopType, useCircle } from "../hooks/useCircle";
 import { KimTeaWan } from "../assets/img";
 import { Balloon } from "../components/Balloon";
+import { _SectionWrapper } from "../components/common/SectionWrapper";
 
 export const SkillChart = ({ setScroll }: ScrollType) => {
   const ref = useScroll(setScroll, 2);
@@ -32,17 +33,12 @@ export const SkillChart = ({ setScroll }: ScrollType) => {
   );
 };
 
-const _SkillList = styled.div`
-  position: relative;
+const _SkillList = styled(_SectionWrapper)`
   width: 500px;
   height: 500px;
+  overflow: visible;
   border: 1px solid black;
   border-radius: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 40px 80px;
 `;
 
 const _Item = styled.div<{ xy: readonly [number, number] }>`

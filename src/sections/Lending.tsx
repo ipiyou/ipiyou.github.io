@@ -4,6 +4,7 @@ import { _Text } from "../components/common/Text";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
 import { aboutMe } from "../Text/lending";
+import { _SectionWrapper } from "../components/common/SectionWrapper";
 
 interface ChildrenType {
   children: ReactNode;
@@ -43,13 +44,8 @@ const _Title = styled(_Text)`
   z-index: 2;
 `;
 
-const _Wrapper = styled.section`
-  position: relative;
+const _Wrapper = styled(_SectionWrapper)`
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: ${({ theme }) => theme.color.black};
 `;
 

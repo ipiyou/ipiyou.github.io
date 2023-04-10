@@ -8,6 +8,7 @@ import { Github, Good } from "../assets/svg";
 import { Link } from "../components/common/Link";
 import { UserButtonList } from "../components/UserButtonList";
 import { ChatText } from "../components/ChatList";
+import { _SectionWrapper } from "../components/common/SectionWrapper";
 
 export const Finish = ({ setScroll }: ScrollType) => {
   const ref = useScroll(setScroll, 4);
@@ -69,13 +70,9 @@ export const Finish = ({ setScroll }: ScrollType) => {
   );
 };
 
-const _Wrapper = styled.section`
+const _Wrapper = styled(_SectionWrapper)`
   height: 100vh;
   padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.color.gray10};
 `;
 const _Content = styled.div`
   max-width: 1000px;

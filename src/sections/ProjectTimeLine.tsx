@@ -6,6 +6,7 @@ import { ScrollType } from "../App";
 import { projects } from "../Text/Project";
 import { useTimeLine } from "../hooks/useTimeLine";
 import { Arrow } from "../assets/svg/Arrow";
+import { _SectionWrapper } from "../components/common/SectionWrapper";
 
 const DateTextList = Array(11)
   .fill(2022)
@@ -52,14 +53,8 @@ export const ProjectTimeLine = ({ setScroll }: ScrollType) => {
   );
 };
 
-const _Wrapper = styled.section`
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const _Wrapper = styled(_SectionWrapper)`
   padding: 30px 0;
-  background-color: ${({ theme }) => theme.color.gray10};
 `;
 
 const _Content = styled.div`
