@@ -79,7 +79,6 @@ const _Block = styled.div<{ color: string; height: number; second: number }>`
   height: ${({ height }) => height}px;
   border-radius: ${({ theme }) => theme.radius.large};
   background-color: ${({ color }) => color};
-  box-shadow: 0 0 100px 10px ${({ color }) => color + "66"};
   transform-origin: bottom center;
   animation: ${fire} ${({ second }) => second * 0.25 + 4}s alternate infinite;
 `;

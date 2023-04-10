@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { _Text } from "./common/Text";
+import { ReactNode } from "react";
 
 interface ChatType {
   img?: string;
-  texts: string[];
+  texts: (string | ReactNode)[];
 }
 
 export const ChatText = ({ img, texts }: ChatType) =>
