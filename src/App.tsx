@@ -5,18 +5,20 @@ import { ProjectTimeLine } from "./sections/ProjectTimeLine";
 import { SkillChart } from "./sections/SkillChart";
 import { GlobalProvider } from "./style/Provider";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
+import { Header } from "./components/common/Header";
 
 export type ScrollFnType = Dispatch<SetStateAction<number>>;
 
 export interface ScrollType {
   setScroll: ScrollFnType;
+  scroll?: number;
 }
 
 function App() {
   const [scroll, setScroll] = useState<number>(0);
-  console.log(scroll);
   return (
     <GlobalProvider>
+      <Header setScroll={setScroll} scroll={scroll} />
       <_Wrapper scroll={scroll}>
         <Lending setScroll={setScroll} />
         <SkillChart setScroll={setScroll} />
