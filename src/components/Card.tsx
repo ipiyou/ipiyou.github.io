@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Github, PlayVideo, WebSite } from "../assets/svg";
 import { _Text } from "./common/Text";
 import { Link } from "./common/Link";
@@ -56,12 +56,10 @@ export const Card = ({
 }: PropsType) => {
   const videoRef = useRef<FullScreenType | null>(null);
   const fullScreen = () => {
-    const { current } = videoRef;
-    if (!current) return;
+    if (!videoRef.current) return;
     for (const key of screenFn) {
-      const fullScreenFn = current[key];
-      if (fullScreenFn) {
-        ((videoRef.current as FullScreenType)[key] as () => void)();
+      if (videoRef.current[key]) {
+        (videoRef.current[key] as () => void)();
         break;
       }
     }
@@ -79,7 +77,7 @@ export const Card = ({
         <_Text weight="bold">{title}</_Text>
         <_Footer>
           {video && (
-            <_VideoWrapper onClick={() => fullScreen()}>
+            <_VideoWrapper onClick={fullScreen}>
               <PlayVideo />
             </_VideoWrapper>
           )}
@@ -164,7 +162,12 @@ const _Img = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 8px 8px 0;
+  ${({ theme }) => {
+    const radius = theme.radius.medium;
+    return css`
+      border-radius: ${radius} ${radius} 0;
+    `;
+  }};
 `;
 
 const _Video = styled.video`

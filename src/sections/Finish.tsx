@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { _Text } from "../components/common/Text";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
 import { about } from "../Text/about";
@@ -16,6 +16,8 @@ export const Finish = ({ setScroll }: ScrollType) => {
   const [profile, setProfile] = useState<number>(0);
   const [search, setSearch] = useState<string>("");
 
+  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setSearch(e.target.value);
   const currentChat = about[profile];
   const scrollEvent = {
     onWheel: () => setInnerScroll(true),
@@ -30,7 +32,7 @@ export const Finish = ({ setScroll }: ScrollType) => {
             <_FriendsInput
               placeholder="검색"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={onSearchChange}
             />
           </_FriendsHeader>
           {about.map(
@@ -44,17 +46,17 @@ export const Finish = ({ setScroll }: ScrollType) => {
         </_Friends>
         <_ChatWrapper>
           <_ChatHeader>
-            <_HeaderImgCenter>
-              <_Img width={30} height={30} src={currentChat.img} />
+            <_HeaderImgWrapper>
+              <_Img src={currentChat.img} />
               <_Text size="16px" weight="bold">
                 {currentChat.name}
               </_Text>
-            </_HeaderImgCenter>
+            </_HeaderImgWrapper>
             <Link to="https://github.com/ipiyou">
-              <_HeaderImgCenter>
+              <_HeaderImgWrapper>
                 <Github />
                 <_Text size="18px">ipiyou</_Text>
-              </_HeaderImgCenter>
+              </_HeaderImgWrapper>
             </Link>
           </_ChatHeader>
           <_ChatContent {...scrollEvent}>
@@ -111,6 +113,8 @@ const _FriendsInput = styled.input`
 `;
 
 const _Img = styled.img`
+  width: 30px;
+  height: 30px;
   object-fit: cover;
   border-radius: ${({ theme }) => theme.radius.large};
 `;
@@ -131,7 +135,7 @@ const _ChatHeader = styled.div`
   padding: 5px 20px;
   border-bottom: 1px solid black;
 `;
-const _HeaderImgCenter = styled.div`
+const _HeaderImgWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;

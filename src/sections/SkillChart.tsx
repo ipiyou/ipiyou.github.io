@@ -13,14 +13,14 @@ export const SkillChart = ({ setScroll }: ScrollType) => {
   const [moveDegree, circleXY, stop, setStop] = useCircle(500);
   return (
     <_Wrapper ref={ref} stop={stop}>
-      <_SkillList>
+      <_Circle>
         {skillList.map(({ degree, icon, percent, radius }) => (
-          <_Item xy={circleXY(degree + moveDegree)}>
-            <_SkillPercent radius={radius} color="white" size="24px">
+          <_SKill xy={circleXY(degree + moveDegree)}>
+            <_Percentage radius={radius} color="white" size="24px">
               {percent}
-            </_SkillPercent>
+            </_Percentage>
             {icon}
-          </_Item>
+          </_SKill>
         ))}
         <Balloon stop={stop} />
         <_Pictrue
@@ -28,24 +28,24 @@ export const SkillChart = ({ setScroll }: ScrollType) => {
           onMouseEnter={() => setStop(true)}
           onMouseLeave={() => setStop(false)}
         />
-      </_SkillList>
+      </_Circle>
     </_Wrapper>
   );
 };
 
-const _SkillList = styled.div`
+const _Circle = styled.div`
   position: relative;
   width: 500px;
   height: 500px;
   border: 1px solid black;
-  border-radius: 100%;
+  border-radius: ${({ theme }) => theme.radius.circle};
   display: flex;
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
 `;
 
-const _Item = styled.div<{ xy: readonly [number, number] }>`
+const _SKill = styled.div<{ xy: readonly [number, number] }>`
   position: absolute;
   height: 100%;
   transition: 1s;
@@ -63,7 +63,7 @@ const _Item = styled.div<{ xy: readonly [number, number] }>`
   }
 `;
 
-const _SkillPercent = styled(_Text)<{ radius: string }>`
+const _Percentage = styled(_Text)<{ radius: string }>`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -81,7 +81,7 @@ const _Pictrue = styled.img`
   cursor: pointer;
   width: 100px;
   height: 100px;
-  border-radius: 100%;
+  border-radius: ${({ theme }) => theme.radius.circle};
   object-fit: cover;
 `;
 
@@ -92,7 +92,7 @@ const _Wrapper = styled(_SectionWrapper)<StopType>`
       css`
         transition: 0.5s;
         background-color: ${theme.color.gray100};
-        ${_SkillPercent} {
+        ${_Percentage} {
           opacity: 1;
         }
       `

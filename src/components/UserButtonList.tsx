@@ -14,7 +14,7 @@ export const UserButtonList = ({
   img,
   isCurrentButton,
 }: UserButtonType) => (
-  <_FriendsButton isCurrentButton={isCurrentButton}>
+  <_Wrapper isCurrentButton={isCurrentButton}>
     <_Img src={img} />
     <div>
       <_Text size="15px" weight="bold">
@@ -24,10 +24,10 @@ export const UserButtonList = ({
         {kinda}
       </_Text>
     </div>
-  </_FriendsButton>
+  </_Wrapper>
 );
 
-const _FriendsButton = styled.button<{ isCurrentButton: boolean }>`
+const _Wrapper = styled.button<{ isCurrentButton: boolean }>`
   cursor: pointer;
   width: 100%;
   transition: 0.5s;
