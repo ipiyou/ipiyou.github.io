@@ -42,10 +42,10 @@ function projectChats(chats: TransformType) {
   return {
     ...chats,
     content: [
-      { ...projectText(0), img },
-      { texts: chats.content[0] },
-      { ...projectText(1), img },
-      { texts: chats.content[1] },
+      projectText(0),
+      { texts: chats.content[0], img },
+      projectText(1),
+      { texts: chats.content[1], img },
     ],
   };
 }
