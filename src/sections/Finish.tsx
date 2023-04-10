@@ -50,7 +50,7 @@ export const Finish = ({ setScroll }: ScrollType) => {
                 {currentChat.name}
               </_Text>
             </_HeaderImgCenter>
-            <Link to="asgas">
+            <Link to="https://github.com/ipiyou">
               <_HeaderImgCenter>
                 <Github />
                 <_Text size="18px">ipiyou</_Text>
