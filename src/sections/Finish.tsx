@@ -10,6 +10,7 @@ import { UserButtonList } from "../components/UserButtonList";
 import { ChatText } from "../components/ChatList";
 import { _SectionWrapper } from "../components/common/SectionWrapper";
 import { finalMedia } from "../media/media";
+import { Img } from "../components/common/VifImage";
 
 export const Finish = ({ setScroll }: ScrollType) => {
   const ref = useScroll(setScroll, 4);
@@ -49,7 +50,7 @@ export const Finish = ({ setScroll }: ScrollType) => {
         <_ChatWrapper>
           <_ChatHeader>
             <_HeaderImgWrapper>
-              <_Img src={currentChat.img} alt="현재 프로필 사진" />
+              <_Img {...currentChat.img} alt="현재 프로필 사진" />
               <_Text size="16px" weight="bold">
                 {currentChat.name}
               </_Text>
@@ -120,7 +121,7 @@ const _FriendsInput = styled.input`
   `)}
 `;
 
-const _Img = styled.img`
+const _Img = styled(Img)`
   width: 30px;
   height: 30px;
   object-fit: cover;

@@ -1,24 +1,25 @@
 import {
   EFTIS,
+  ImageType,
   KimTeaWan,
   Midas,
   OnPost,
   ProjectIntroduce,
   Scouit,
-} from "../assets/img";
+} from "../assets";
 import { Fire } from "../components/Fire";
 import { _Text } from "../components/common/Text";
 import { ReactNode } from "react";
 
 interface ChatType {
-  img?: string;
+  img?: ImageType;
   texts: (string | ReactNode)[];
 }
 
 interface ProjectUnionType {
   name: string;
   kinda: string;
-  img: string;
+  img: ImageType;
 }
 
 interface TransformType extends ProjectUnionType {

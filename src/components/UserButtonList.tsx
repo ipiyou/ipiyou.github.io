@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { _Text } from "./common/Text";
 import { finalMedia } from "../media/media";
+import { ImageType } from "../assets";
 
 interface UserButtonType {
   name: string;
   kinda: string;
-  img: string;
+  img: ImageType;
   isCurrentButton: boolean;
 }
 
@@ -16,7 +17,7 @@ export const UserButtonList = ({
   isCurrentButton,
 }: UserButtonType) => (
   <_Wrapper isCurrentButton={isCurrentButton}>
-    <_Img src={img} alt="회고 프로필 사진" />
+    <_Img {...img} alt="회고 프로필 사진" />
     <_TextWrapper>
       <_Text size="15px" weight="bold">
         {name}

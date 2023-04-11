@@ -4,11 +4,12 @@ import { skillList } from "../Text/Skills";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
 import { StopType, useCircle } from "../hooks/useCircle";
-import { KimTeaWan } from "../assets/img";
 import { Balloon } from "../components/Balloon";
 import { _SectionWrapper } from "../components/common/SectionWrapper";
 import { useRef } from "react";
 import { skillMedia } from "../media/media";
+import { Img } from "../components/common/VifImage";
+import { KimTeaWan } from "../assets";
 
 export const SkillChart = ({ setScroll }: ScrollType) => {
   const ref = useScroll(setScroll, 2);
@@ -28,7 +29,7 @@ export const SkillChart = ({ setScroll }: ScrollType) => {
         ))}
         <Balloon stop={stop} />
         <_Pictrue
-          src={KimTeaWan}
+          {...KimTeaWan}
           onMouseEnter={() => setStop(true)}
           onMouseLeave={() => setStop(false)}
           alt="기술 스택 프로필 카드"
@@ -86,7 +87,7 @@ const _Percentage = styled(_Text)<{ radius: string }>`
   background-color: ${({ theme }) => theme.color.black + "7F"};
 `;
 
-const _Pictrue = styled.img`
+const _Pictrue = styled(Img)`
   cursor: pointer;
   width: 100px;
   height: 100px;

@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import { _Text } from "./common/Text";
 import { ReactNode } from "react";
+import { ImageType } from "../assets";
 
 interface ChatType {
-  img?: string;
+  img?: ImageType;
   texts: (string | ReactNode)[];
 }
 
 export const ChatText = ({ img, texts }: ChatType) =>
   img ? (
     <_ChatUser>
-      <_Img src={img} />
+      <_Img {...img} />
       <_ChatTextBoxList>
         {texts.map((text) => (
           <_ChatUserTextBox size="14px">{text}</_ChatUserTextBox>

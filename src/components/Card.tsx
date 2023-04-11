@@ -4,6 +4,7 @@ import { Github, PlayVideo, WebSite } from "../assets/svg";
 import { _Text } from "./common/Text";
 import { Link } from "./common/Link";
 import { projectMedia } from "../media/media";
+import { Img } from "./common/VifImage";
 
 interface PropsType {
   title: string;
@@ -11,7 +12,7 @@ interface PropsType {
   peoples: string;
   role: string;
   skills: string;
-  img?: string;
+  img?: { src: string; avif: string; webp: string };
   video?: string;
   github?: string;
   website?: string;
@@ -73,7 +74,7 @@ export const Card = ({
   };
   return (
     <_Wrapper>
-      {img && <_Img src={img} alt="프로젝트 이미지 카드" />}
+      {img && <_Img {...img} alt="프로젝트 이미지 카드" />}
       <_NameWrapper>
         <_Text weight="bold">{title}</_Text>
         <_Footer>
@@ -159,7 +160,7 @@ const _Wrapper = styled.div`
   border-radius: ${({ theme }) => theme.radius.medium};
 `;
 
-const _Img = styled.img`
+const _Img = styled(Img)`
   width: 100%;
   height: 200px;
   object-fit: cover;

@@ -5,6 +5,7 @@ import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
 import { aboutMe } from "../Text/lending";
 import { _SectionWrapper } from "../components/common/SectionWrapper";
+import { Img } from "../components/common/VifImage";
 
 interface ChildrenType {
   children: ReactNode;
@@ -33,7 +34,7 @@ export const Lending = ({ setScroll }: ScrollType) => {
       <Title>{title[0]}</Title>
       <Title>{title[1]}</Title>
       {imgs.map((src, idx) => (
-        <_Background src={src} isCurrentImg={idx === time} />
+        <_Background {...src} isCurrentImg={idx === time} />
       ))}
     </_Wrapper>
   );
@@ -58,9 +59,11 @@ const _FireWrapper = styled.div`
   gap: 50px;
 `;
 
-const _Background = styled.img<{ isCurrentImg: boolean }>`
+const _Background = styled(Img)<{ isCurrentImg: boolean }>`
   position: absolute;
   z-index: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   transition: 1s;
