@@ -8,7 +8,6 @@ interface PropsType {
 export const Footer = ({ scroll }: PropsType) => {
   return (
     <_Wrapper scroll={scroll}>
-      <_Text size="18px">Next.js로 리팩토링합니다</_Text>
       <_Text size="14px" weight="bold">
         Made By 김태완
       </_Text>
