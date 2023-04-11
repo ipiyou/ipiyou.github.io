@@ -12,7 +12,7 @@ interface ChatType {
 export const ChatText = ({ img, texts }: ChatType) =>
   img ? (
     <_ChatUser>
-      <_Img {...img} />
+      <_Img {...img} alt="채팅방 프로필 이미지"/>
       <_ChatTextBoxList>
         {texts.map((text) => (
           <_ChatUserTextBox size="14px">{text}</_ChatUserTextBox>
