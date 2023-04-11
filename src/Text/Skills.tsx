@@ -16,11 +16,11 @@ export const skillNotHoverText =
 
 export const skillList = [
   { degree: 0, icon: <Typescript />, percent: "50%", radius: "4px" },
-  { degree: 45, icon: <Styled />, percent: "40%", radius: "20px" },
+  { degree: 45, icon: <Styled />, percent: "45%", radius: "20px" },
   { degree: 90, icon: <Github />, percent: "50%", radius: "100%" },
   { degree: 135, icon: <React />, percent: "60%", radius: "19px" },
   { degree: 180, icon: <Javascript />, percent: "70%", radius: "0" },
-  { degree: 225, icon: <Redux />, percent: "25%", radius: "20px" },
-  { degree: 270, icon: <NextJs />, percent: "20%", radius: "100%" },
-  { degree: 315, icon: <Recoil />, percent: "40%", radius: "8px" },
+  { degree: 225, icon: <Redux />, percent: "35%", radius: "20px" },
+  { degree: 270, icon: <NextJs />, percent: "25%", radius: "100%" },
+  { degree: 315, icon: <Recoil />, percent: "45%", radius: "8px" },
 ];

@@ -3,7 +3,7 @@ import { _Text } from "../components/common/Text";
 import { useState, ChangeEvent } from "react";
 import { useScroll } from "../hooks/useScroll";
 import { ScrollType } from "../App";
-import { about } from "../Text/about";
+import { about } from "../Text/Final";
 import { Github, Good } from "../assets/svg";
 import { Link } from "../components/common/Link";
 import { UserButtonList } from "../components/UserButtonList";
