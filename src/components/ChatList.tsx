@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { _Text } from "./common/Text";
 import { ReactNode } from "react";
 import { ImageType } from "../assets";
+import { Img } from "./common/VifImage";
 
 interface ChatType {
   img?: ImageType;
@@ -56,7 +57,7 @@ const _ChatMeTextBox = styled(_ChatUserTextBox)`
   color: ${({ theme }) => theme.color.white};
 `;
 
-const _Img = styled.img`
+const _Img = styled(Img)`
   flex-shrink: 0;
   width: 30px;
   height: 30px;

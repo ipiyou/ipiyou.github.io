@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { _Text } from "./common/Text";
 import { finalMedia } from "../media/media";
 import { ImageType } from "../assets";
+import { Img } from "./common/VifImage";
 
 interface UserButtonType {
   name: string;
@@ -57,7 +58,7 @@ const _TextWrapper = styled.div`
   `)}
 `;
 
-const _Img = styled.img`
+const _Img = styled(Img)`
   flex-shrink: 0;
   width: 50px;
   height: 50px;
