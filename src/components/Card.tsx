@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import { Github, PlayVideo, WebSite } from "../assets/svg";
 import { _Text } from "./common/Text";
 import { Link } from "./common/Link";
+import { projectMedia } from "../media/media";
 
 interface PropsType {
   title: string;
@@ -149,7 +150,7 @@ const _ContentText = styled(_Text)`
 const _Wrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 550px;
+  max-height: 550px;
   padding: 0 40px;
   display: flex;
   flex-direction: column;
@@ -168,6 +169,9 @@ const _Img = styled.img`
       border-radius: ${radius} ${radius} 0;
     `;
   }};
+  ${projectMedia(`
+    display: none;
+  `)}
 `;
 
 const _Video = styled.video`

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { _Text } from "./common/Text";
 import { StopType } from "../hooks/useCircle";
 import { skillHoverText, skillNotHoverText } from "../Text/Skills";
+import { skillMedia } from "../media/media";
 
 export const Balloon = ({ stop }: StopType) => {
   return (
@@ -21,6 +22,9 @@ const _Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   top: 85px;
+  ${skillMedia(`
+    top: -150px;
+  `)}
 `;
 
 const _Balloon = styled(_Text)`

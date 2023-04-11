@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { _Text } from "./common/Text";
+import { finalMedia } from "../media/media";
 
 interface UserButtonType {
   name: string;
@@ -16,19 +17,20 @@ export const UserButtonList = ({
 }: UserButtonType) => (
   <_Wrapper isCurrentButton={isCurrentButton}>
     <_Img src={img} alt="회고 프로필 사진" />
-    <div>
+    <_TextWrapper>
       <_Text size="15px" weight="bold">
         {name}
       </_Text>
       <_Text size="12px" weight="bold">
         {kinda}
       </_Text>
-    </div>
+    </_TextWrapper>
   </_Wrapper>
 );
 
 const _Wrapper = styled.button<{ isCurrentButton: boolean }>`
   cursor: pointer;
+  max-width: 300px;
   width: 100%;
   transition: 0.5s;
   display: flex;
@@ -43,9 +45,19 @@ const _Wrapper = styled.button<{ isCurrentButton: boolean }>`
   :hover {
     background-color: ${({ theme }) => theme.color.gray50};
   }
+  ${finalMedia(`
+    padding: 7px 8px;
+  `)}
+`;
+
+const _TextWrapper = styled.div`
+  ${finalMedia(`
+    display: none;
+  `)}
 `;
 
 const _Img = styled.img`
+  flex-shrink: 0;
   width: 50px;
   height: 50px;
   object-fit: cover;

@@ -4,7 +4,11 @@ export interface StopType {
   stop: boolean;
 }
 
-export const useCircle = (diameter: number) => {
+interface PropsType {
+  diameter?: number;
+}
+
+export const useCircle = ({ diameter = 500 }: PropsType) => {
   const [state, setState] = useState<number>(0);
   const [stop, setStop] = useState<boolean>(false);
 
@@ -20,8 +24,9 @@ export const useCircle = (diameter: number) => {
     return degrees * (pi / 180);
   };
   const circleXY = (angle: number) => {
-    const x = Math.cos(toRadians(angle)) * radius;
-    const y = Math.sin(toRadians(angle)) * radius;
+    const moveSkillSize = diameter / 2 - 42;
+    const x = Math.cos(toRadians(angle)) * radius + moveSkillSize;
+    const y = Math.sin(toRadians(angle)) * radius + moveSkillSize;
     return [x, y] as const;
   };
   return [state, circleXY, stop, setStop] as const;

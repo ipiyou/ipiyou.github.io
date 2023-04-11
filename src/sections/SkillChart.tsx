@@ -7,13 +7,17 @@ import { StopType, useCircle } from "../hooks/useCircle";
 import { KimTeaWan } from "../assets/img";
 import { Balloon } from "../components/Balloon";
 import { _SectionWrapper } from "../components/common/SectionWrapper";
+import { useRef } from "react";
+import { skillMedia } from "../media/media";
 
 export const SkillChart = ({ setScroll }: ScrollType) => {
   const ref = useScroll(setScroll, 2);
-  const [moveDegree, circleXY, stop, setStop] = useCircle(500);
+  const circleRef = useRef<HTMLDivElement | null>(null);
+  const diameter = circleRef.current?.offsetWidth;
+  const [moveDegree, circleXY, stop, setStop] = useCircle({ diameter });
   return (
     <_Wrapper ref={ref} stop={stop}>
-      <_Circle>
+      <_Circle ref={circleRef}>
         {skillList.map(({ degree, icon, percent, radius }) => (
           <_SKill xy={circleXY(degree + moveDegree)}>
             <_Percentage radius={radius} color="white" size="24px">
@@ -44,6 +48,10 @@ const _Circle = styled.div`
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
+  ${skillMedia(`
+    width: 250px;
+    height: 250px;
+  `)}
 `;
 
 const _SKill = styled.div<{ xy: readonly [number, number] }>`
@@ -54,8 +62,8 @@ const _SKill = styled.div<{ xy: readonly [number, number] }>`
   ${({ xy }) => {
     const [x, y] = xy;
     return css`
-      left: ${x + 207}px;
-      top: ${y + 207}px;
+      left: ${x}px;
+      top: ${y}px;
     `;
   }}
   > svg {

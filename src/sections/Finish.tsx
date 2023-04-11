@@ -9,6 +9,7 @@ import { Link } from "../components/common/Link";
 import { UserButtonList } from "../components/UserButtonList";
 import { ChatText } from "../components/ChatList";
 import { _SectionWrapper } from "../components/common/SectionWrapper";
+import { finalMedia } from "../media/media";
 
 export const Finish = ({ setScroll }: ScrollType) => {
   const ref = useScroll(setScroll, 4);
@@ -28,7 +29,7 @@ export const Finish = ({ setScroll }: ScrollType) => {
       <_Content>
         <_Friends {...scrollEvent}>
           <_FriendsHeader>
-            <_Text margin="20px 0 0">채팅</_Text>
+            <_Title margin="20px 0 0">채팅</_Title>
             <_FriendsInput
               placeholder="검색"
               value={search}
@@ -76,6 +77,7 @@ const _Wrapper = styled(_SectionWrapper)`
   height: 100vh;
   padding: 16px;
 `;
+
 const _Content = styled.div`
   max-width: 1000px;
   max-height: 500px;
@@ -89,7 +91,6 @@ const _Content = styled.div`
 
 const _Friends = styled.div`
   max-width: 300px;
-  width: 100%;
   height: 100%;
   overflow-y: auto;
   border-right: 1px solid ${({ theme }) => theme.color.gray100};
@@ -110,6 +111,9 @@ const _FriendsInput = styled.input`
   :focus {
     box-shadow: ${({ theme }) => theme.shadow.item};
   }
+  ${finalMedia(`
+    display: none;
+  `)}
 `;
 
 const _Img = styled.img`
@@ -168,4 +172,8 @@ const _FooterInput = styled.input`
   padding: 0 16px;
   border-radius: ${({ theme }) => theme.radius.large};
   background-color: ${({ theme }) => theme.color.gray50};
+`;
+
+const _Title = styled(_Text)`
+  white-space: nowrap;
 `;
