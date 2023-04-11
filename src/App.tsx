@@ -6,6 +6,7 @@ import { SkillChart } from "./sections/SkillChart";
 import { GlobalProvider } from "./style/Provider";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { Header } from "./components/common/Header";
+import { Footer } from "./components/common/Footer";
 
 export type ScrollFnType = Dispatch<SetStateAction<number>>;
 
@@ -25,6 +26,7 @@ function App() {
         <ProjectTimeLine setScroll={setScroll} />
         <Finish setScroll={setScroll} />
       </_Wrapper>
+      <Footer scroll={scroll} />
     </GlobalProvider>
   );
 }
