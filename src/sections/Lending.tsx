@@ -50,15 +50,6 @@ const _Wrapper = styled(_SectionWrapper)`
   background-color: ${({ theme }) => theme.color.black};
 `;
 
-const _FireWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  margin-top: 100px;
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-`;
-
 const _Background = styled(Img)<{ isCurrentImg: boolean }>`
   position: absolute;
   z-index: 0;
