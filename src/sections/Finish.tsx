@@ -91,10 +91,13 @@ const _Content = styled.div`
 `;
 
 const _Friends = styled.div`
-  max-width: 300px;
+  width: 300px;
   height: 100%;
   overflow-y: auto;
   border-right: 1px solid ${({ theme }) => theme.color.gray100};
+  ${finalMedia(`
+    width: auto;
+  `)}
 `;
 
 const _FriendsHeader = styled.div`

@@ -9,8 +9,19 @@ import {
   Typescript,
 } from "../assets/svg";
 
-export const skillHoverText =
-  "0부터 25%까지는 디버깅에 어려움을 겪습니다. 50%까지는 사용하는 데 많은 어려움이 없습니다. 75%까지는 작동 원리를 배웁니다";
+export const skillHoverText = (
+  <>
+    <div>
+      25%까지는 디버깅에 <b>약간 힘듭니다</b>
+    </div>
+    <div>
+      50%까지는 사용하는데 <b>어려움이 없습니다.</b>
+    </div>
+    <div>
+      75%까지는 <b>작동 원리를 공부</b>합니다
+    </div>
+  </>
+);
 export const skillNotHoverText =
   "안녕하세요. 자세한 숙련도를 보려면 프로필을 호버해 주세요";
 
