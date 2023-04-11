@@ -23,6 +23,7 @@ export const Finish = ({ setScroll }: ScrollType) => {
   const scrollEvent = {
     onWheel: () => setInnerScroll(true),
     onMouseLeave: () => setInnerScroll(false),
+    onTouchEnd: () => setInnerScroll(false),
   };
   return (
     <_Wrapper ref={innerScroll ? undefined : ref}>
