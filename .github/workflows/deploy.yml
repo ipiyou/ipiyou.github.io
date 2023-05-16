@@ -29,6 +29,7 @@ jobs:
         with:
           branch: ipiyou.github.io
           folder: build
+          baseBranch: main
 
       - name: Clean up
         run: npm run clean
