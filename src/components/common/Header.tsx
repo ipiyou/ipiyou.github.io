@@ -12,6 +12,7 @@ export const Header = ({ setScroll, scroll }: ScrollType) => {
           <_Link
             as="button"
             size="16px"
+            color="gray100"
             weight="bold"
             isCurrentButton={scroll === idx}
             onClick={() => setScroll(idx)}
