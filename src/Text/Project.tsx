@@ -1,7 +1,5 @@
 import { EFTIS, Midas, OnPost, ProjectIntroduce, Scouit } from "../assets";
-import { OnPostVif } from "../assets/avif";
 import { ProjectIntroduceVideo, onPostVideo } from "../assets/videos";
-import { OnPostWebp } from "../assets/webp";
 import { _Text } from "../components/common/Text";
 
 export const projects = [

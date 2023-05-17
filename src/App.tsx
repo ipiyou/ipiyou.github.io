@@ -4,7 +4,7 @@ import { Lending } from "./sections/Lending";
 import { ProjectTimeLine } from "./sections/ProjectTimeLine";
 import { SkillChart } from "./sections/SkillChart";
 import { GlobalProvider } from "./style/Provider";
-import { useEffect, useState, Dispatch, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import { Header } from "./components/common/Header";
 import { Footer } from "./components/common/Footer";
 
