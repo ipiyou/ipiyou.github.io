@@ -100,7 +100,7 @@ export const Card = ({
           <_SubTitle size="16px" weight="bold">
             {contentTitle[key as keyof ContentKeyType]}
           </_SubTitle>
-          <_ContentText size="16px">{value}</_ContentText>
+          <_ContentText size="14px">{value}</_ContentText>
         </_Content>
       ))}
       {video && (
@@ -151,7 +151,7 @@ const _ContentText = styled(_Text)`
 const _Wrapper = styled.div`
   position: relative;
   width: 100%;
-  max-height: 550px;
+  max-height: 600px;
   padding: 0 40px;
   display: flex;
   flex-direction: column;

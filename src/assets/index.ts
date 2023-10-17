@@ -1,53 +1,49 @@
 import {
   EftisVif,
   KimTeaWanVif,
-  MidasVif,
+  TexierVif,
   OnPostVif,
-  ProjectIntroduceVif,
-  ScouitVif,
+  RepoVif,
 } from "./avif";
 import {
   EFTISPng,
   KimTeaWanPng,
-  MidasPng,
+  TexierPng,
   OnPostPng,
-  ProjectIntroducePng,
-  ScouitPng,
+  RepoPng,
+  UnitBlack
 } from "./img";
 import {
   EftisWebp,
   KimTeaWanWebp,
-  MidasWebp,
+  TexierWebp,
   OnPostWebp,
-  ProjectIntroduceWebp,
-  ScouitWebp,
+  RepoWebp,
 } from "./webp";
 
 export const EFTIS = { src: EFTISPng, avif: EftisVif, webp: EftisWebp };
 export const OnPost = { src: OnPostPng, avif: OnPostVif, webp: OnPostWebp };
-export const ProjectIntroduce = {
-  src: ProjectIntroducePng,
-  avif: ProjectIntroduceVif,
-  webp: ProjectIntroduceWebp,
-};
 export const KimTeaWan = {
   src: KimTeaWanPng,
   avif: KimTeaWanVif,
   webp: KimTeaWanWebp,
 };
-export const Midas = {
-  src: MidasPng,
-  avif: MidasVif,
-  webp: MidasWebp,
+export const Texier = {
+  src: TexierPng,
+  avif: TexierVif,
+  webp: TexierWebp,
 };
-export const Scouit = {
-  src: ScouitPng,
-  avif: ScouitVif,
-  webp: ScouitWebp,
+export const Repo = {
+  src: RepoPng,
+  avif: RepoVif,
+  webp: RepoWebp,
 };
+export const Unit = {
+  src: UnitBlack,
+}
 
 export interface ImageType {
   src: string;
-  avif: string;
-  webp: string;
+  avif?: string;
+  webp?: string;
 }

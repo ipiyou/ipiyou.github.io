@@ -14,7 +14,7 @@ export const useTimeLine = (dates: string[]) => {
   };
 
   const moveNext = (num: number) => {
-    if (num >= 5 || num < 0) return;
+    if (num >= dates.length || num < 0) return;
     setState(num);
     moveNearDate(dates[num]);
   };

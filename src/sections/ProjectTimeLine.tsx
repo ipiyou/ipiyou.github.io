@@ -8,7 +8,7 @@ import { useTimeLine } from "../hooks/useTimeLine";
 import { Arrow } from "../assets/svg/Arrow";
 import { _SectionWrapper } from "../components/common/SectionWrapper";
 
-const DateTextList = Array(11)
+const DateTextList = Array(15)
   .fill(2022)
   .map((date, idx) => {
     const month = idx + 5;
@@ -27,9 +27,8 @@ export const ProjectTimeLine = ({ setScroll }: ScrollType) => {
   const [projectNumber, next, currentDate] = useTimeLine([
     "2022.05",
     "2022.08",
-    "2022.09",
-    "2022.11",
-    "2023.3",
+    "2023.04",
+    "2023.07",
   ]);
   return (
     <_Wrapper ref={ref}>

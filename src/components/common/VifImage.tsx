@@ -8,8 +8,8 @@ interface PropsType extends StyledComponentProps<"img", any, {}, never> {
 export const Img = ({ avif, webp, ...args }: PropsType) => {
   return (
     <picture>
-      <source type="image/avif" srcSet={avif} />
-      <source type="image/webp" srcSet={webp} />
+      {avif && <source type="image/avif" srcSet={avif} />}
+      {webp && <source type="image/webp" srcSet={webp} />}
       <source type="image/png" srcSet={args.src} />
       <_Img {...args} />
     </picture>
