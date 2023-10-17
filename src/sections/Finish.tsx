@@ -12,24 +12,18 @@ import { _SectionWrapper } from "../components/common/SectionWrapper";
 import { finalMedia } from "../media/media";
 import { Img } from "../components/common/VifImage";
 
-export const Finish = ({ setScroll }: ScrollType) => {
-  const ref = useScroll(setScroll, 4);
-  const [innerScroll, setInnerScroll] = useState<boolean>(false);
+export const Finish = () => {
   const [profile, setProfile] = useState<number>(0);
   const [search, setSearch] = useState<string>("");
 
   const onSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
     setSearch(e.target.value);
   const currentChat = about[profile];
-  const scrollEvent = {
-    onWheel: () => setInnerScroll(true),
-    onMouseLeave: () => setInnerScroll(false),
-    onTouchEnd: () => setInnerScroll(false),
-  };
+
   return (
-    <_Wrapper ref={innerScroll ? undefined : ref}>
+    <_Wrapper >
       <_Content>
-        <_Friends {...scrollEvent}>
+        <_Friends>
           <_FriendsHeader>
             <_Title margin="20px 0 0">채팅</_Title>
             <_FriendsInput
@@ -62,7 +56,7 @@ export const Finish = ({ setScroll }: ScrollType) => {
               </_HeaderImgWrapper>
             </Link>
           </_ChatHeader>
-          <_ChatContent {...scrollEvent}>
+          <_ChatContent>
             {currentChat.content.map(ChatText)}
           </_ChatContent>
           <_Footer>

@@ -4,7 +4,12 @@ import { _Text } from "./Text";
 
 const nav = ["Home", "Skills", "Projects", "Detail"];
 
-export const Header = ({ setScroll, scroll }: ScrollType) => {
+interface PropsType {
+  scroll: number;
+}
+
+export const Header = ({scroll}:PropsType) => {
+  const scrollto = (idx:number) => document.documentElement.scrollTo({top: (document.documentElement.scrollHeight / 4) * idx,  behavior: "smooth",})
   return (
     <_Wrapper>
       <_Content>
@@ -15,7 +20,7 @@ export const Header = ({ setScroll, scroll }: ScrollType) => {
             color="gray100"
             weight="bold"
             isCurrentButton={scroll === idx}
-            onClick={() => setScroll(idx)}
+            onClick={() => scrollto(idx)}
           >
             {li}
           </_Link>

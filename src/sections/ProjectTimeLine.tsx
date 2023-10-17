@@ -22,8 +22,7 @@ const DateTextList = Array(15)
     );
   });
 
-export const ProjectTimeLine = ({ setScroll }: ScrollType) => {
-  const ref = useScroll(setScroll, 3);
+export const ProjectTimeLine = () => {
   const [projectNumber, next, currentDate] = useTimeLine([
     "2022.05",
     "2022.08",
@@ -31,7 +30,7 @@ export const ProjectTimeLine = ({ setScroll }: ScrollType) => {
     "2023.07",
   ]);
   return (
-    <_Wrapper ref={ref}>
+    <_Wrapper>
       <_Content>
         <_DateWrapper>
           <Arrow onClick={() => next(projectNumber - 1)} />

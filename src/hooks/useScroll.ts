@@ -1,28 +1,22 @@
-import { useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ScrollFnType } from "../App";
 
-export const useScroll = (setScroll: ScrollFnType, to: number) => {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const handleScroll = (e: WheelEvent) => {
-    const { current } = ref;
-    if (!current) return;
-    const scrollHeight = current.scrollHeight;
-    const scrollTop = current.scrollTop;
-    const clientHeight = current.clientHeight;
-
-    const mouseDown = e.deltaY > 0;
-    const mouseUp = e.deltaY < 0;
-    if (mouseDown && to < 4 && scrollTop + clientHeight >= scrollHeight - 1) {
-      setScroll(to);
-    } else if (mouseUp && to - 2 >= 0 && scrollTop === 0) {
-      setScroll(to - 2);
-    }
-  };
+export const useScroll = () => {
+  const [scroll,setScroll] = useState<number>(0)
   useEffect(() => {
-    const { current } = ref;
-    if (!current) return;
-    current.addEventListener("wheel", handleScroll);
-    return () => current.removeEventListener("wheel", handleScroll);
-  }, []);
-  return ref;
+    const fn = () => {
+      const {scrollTop,scrollHeight} = document.documentElement
+      const height = scrollHeight / 4
+      const cur = Math.floor((scrollTop + height-100) / height)
+      if(scroll === cur) return; 
+      setScroll(cur);
+
+    }
+    const id = setTimeout(() => document.addEventListener('scroll',fn),100)
+    return () => {
+      clearTimeout(id)
+      document.removeEventListener('scroll',fn)
+    } 
+  },[scroll])
+  return [scroll,setScroll] as const;
 };

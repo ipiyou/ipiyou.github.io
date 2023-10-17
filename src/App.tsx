@@ -7,6 +7,7 @@ import { GlobalProvider } from "./style/Provider";
 import { useState, Dispatch, SetStateAction } from "react";
 import { Header } from "./components/common/Header";
 import { Footer } from "./components/common/Footer";
+import { useScroll } from "./hooks/useScroll";
 
 export type ScrollFnType = Dispatch<SetStateAction<number>>;
 
@@ -16,27 +17,17 @@ export interface ScrollType {
 }
 
 function App() {
-  const [scroll, setScroll] = useState<number>(0);
+  const [scroll] = useScroll()
   return (
     <GlobalProvider>
-      <Header setScroll={setScroll} scroll={scroll} />
-      <_Wrapper scroll={scroll}>
-        <Lending setScroll={setScroll} />
-        <SkillChart setScroll={setScroll} />
-        <ProjectTimeLine setScroll={setScroll} />
-        <Finish setScroll={setScroll} />
-      </_Wrapper>
+      <Header scroll={scroll}/>
+      <Lending  />
+      <SkillChart  />
+      <ProjectTimeLine  />
+      <Finish />
       <Footer scroll={scroll} />
     </GlobalProvider>
   );
 }
-
-const _Wrapper = styled.div<{ scroll: number }>`
-  width: 100%;
-  position: fixed;
-  transition: 0.25s;
-  left: 0;
-  top: ${({ scroll }) => scroll * -100}vh;
-`;
 
 export default App;

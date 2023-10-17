@@ -5,9 +5,9 @@ interface PropsType {
   scroll: number;
 }
 
-export const Footer = ({ scroll }: PropsType) => {
+export const Footer = ({scroll}: PropsType) => {
   return (
-    <_Wrapper scroll={scroll}>
+    <_Wrapper scroll={scroll > 0}>
       <_Text size="14px" weight="bold">
         Made By 김태완
       </_Text>
@@ -15,7 +15,7 @@ export const Footer = ({ scroll }: PropsType) => {
   );
 };
 
-const _Wrapper = styled.div<PropsType>`
+const _Wrapper = styled.div<{scroll: boolean}>`
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@ const _Wrapper = styled.div<PropsType>`
     const reverseColor = (whatColor: boolean) =>
       color[whatColor ? "white" : "black"];
     return css`
-      background-color: ${reverseColor(!!scroll)};
+      background-color: ${reverseColor(scroll)};
       transition: 0.5s;
       ${_Text} {
         transition: 0.5s;

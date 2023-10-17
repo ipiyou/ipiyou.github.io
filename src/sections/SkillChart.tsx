@@ -11,13 +11,12 @@ import { skillMedia } from "../media/media";
 import { Img } from "../components/common/VifImage";
 import { KimTeaWan } from "../assets";
 
-export const SkillChart = ({ setScroll }: ScrollType) => {
-  const ref = useScroll(setScroll, 2);
+export const SkillChart = () => {
   const circleRef = useRef<HTMLDivElement | null>(null);
   const diameter = circleRef.current?.offsetWidth;
   const [moveDegree, circleXY, stop, setStop] = useCircle({ diameter });
   return (
-    <_Wrapper ref={ref} stop={stop}>
+    <_Wrapper stop={stop}>
       <_Circle ref={circleRef}>
         {skillList.map(({ degree, icon, percent, radius }) => (
           <_SKill xy={circleXY(degree + moveDegree)}>

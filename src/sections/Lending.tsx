@@ -17,8 +17,7 @@ const Title = ({ children }: ChildrenType) => (
   </_Title>
 );
 
-export const Lending = ({ setScroll }: ScrollType) => {
-  const ref = useScroll(setScroll, 1);
+export const Lending = () => {
   const [time, setTime] = useState<number>(0);
 
   useEffect(() => {
@@ -30,7 +29,7 @@ export const Lending = ({ setScroll }: ScrollType) => {
   const { title, imgs } = aboutMe;
 
   return (
-    <_Wrapper ref={ref}>
+    <_Wrapper >
       <Title>{title[0]}</Title>
       <Title>{title[1]}</Title>
       {imgs.map((src, idx) => (
