@@ -66,7 +66,7 @@ export const Finish = ({ setScroll }: ScrollType) => {
             {currentChat.content.map(ChatText)}
           </_ChatContent>
           <_Footer>
-            <_FooterInput />
+            <_FooterInput aria-label="design"/>
             <Good />
           </_Footer>
         </_ChatWrapper>
@@ -159,7 +159,7 @@ const _ChatContent = styled.div`
   overflow-y: auto;
 `;
 
-const _Footer = styled.div`
+const _Footer = styled.label`
   width: 100%;
   position: absolute;
   bottom: 5px;

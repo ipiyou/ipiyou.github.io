@@ -84,12 +84,12 @@ export const Card = ({
             </_VideoWrapper>
           )}
           {github && (
-            <Link to={github}>
+            <Link to={github} area_label="project github">
               <Github />
             </Link>
           )}
           {website && (
-            <Link to={website}>
+            <Link to={website} area_label="deploy website url">
               <WebSite />
             </Link>
           )}

@@ -34,7 +34,7 @@ export const Lending = ({ setScroll }: ScrollType) => {
       <Title>{title[0]}</Title>
       <Title>{title[1]}</Title>
       {imgs.map((src, idx) => (
-        <_Background {...src} isCurrentImg={idx === time} />
+        <_Background {...src} isCurrentImg={idx === time} alt="랜딩페이지 슬라이드 이미지"/>
       ))}
     </_Wrapper>
   );
